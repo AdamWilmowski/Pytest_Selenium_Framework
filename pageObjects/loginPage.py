@@ -32,3 +32,5 @@ class LoginPage:
         self.driver.find_element(*LoginPage.username).send_keys(email)
         self.driver.find_element(*LoginPage.password).send_keys("1qaz@WSX")
         self.driver.find_element(*LoginPage.login_button).click()
+
+

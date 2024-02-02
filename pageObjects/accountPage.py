@@ -14,6 +14,7 @@ class AccountPage:
     account_dashboard_values = (By.XPATH, "//tbody/tr/td[2]")
     address_book_button = (By.LINK_TEXT, "地址簿")
     address_book_addresses = (By.ID, "sylius-default-address")
+    txt = 0
 
     def get_account_dashboard_values_dict(self, choice=None):
         values_list = self._fetch_values()
@@ -68,7 +69,7 @@ class AccountPage:
         self.driver.find_element(*AccountPage.address_book_button).click()
 
     def get_address_from_address_book(self, index: int) -> dict:
-        address = self.driver.find_elements(*AccountPage.address_book_addresses)[index].txt
+        address = self.driver.find_elements(*AccountPage.address_book_addresses)[index].text
         address_list_full = address.split()
         if index == 0:
             address_list = address_list_full[3:]
@@ -94,3 +95,4 @@ class AccountPage:
                 "country": address_list[7],
                 "phone_number": address_list[8]
             }
+            return address_dict
