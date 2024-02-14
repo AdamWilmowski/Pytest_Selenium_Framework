@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -50,13 +52,13 @@ class RegistrationPage:
         self.driver.find_element(*RegistrationPage.company_name).send_keys(text)
 
     def input_vat_number(self, text):
-        self.driver.find_element(*RegistrationPage.company_name).send_keys(text)
+        self.driver.find_element(*RegistrationPage.VAT_number).send_keys(text)
 
     def input_registered_address(self, text):
-        self.driver.find_element(*RegistrationPage.company_name).send_keys(text)
+        self.driver.find_element(*RegistrationPage.registered_address).send_keys(text)
 
     def input_company_phone(self, text):
-        self.driver.find_element(*RegistrationPage.company_name).send_keys(text)
+        self.driver.find_element(*RegistrationPage.company_phone).send_keys(text)
 
     def input_bank_name(self, text):
         self.driver.find_element(*RegistrationPage.bank_name).send_keys(text)
@@ -111,32 +113,32 @@ class RegistrationPage:
             By.CSS_SELECTOR,
             "div[class='china-addressing-province ui dropdown selection']"
         ).click()
-
+        time.sleep(1)
         self.driver.find_element(
             By.XPATH,
-            "//form/div[8]/div[2]/div[2]/div/div[2]/div[1]"
+            "//form/div[2]/div[2]/div[2]/div/div[2]/div[1]"
         ).click()
-
+        time.sleep(3)
         self.driver.find_element(
             By.CSS_SELECTOR,
             "div[class='js-autoload-field china-addressing-city ui dropdown selection']"
         ).click()
-
+        time.sleep(1)
         self.driver.find_element(
             By.XPATH,
-            "//form/div[8]/div[2]/div[3]/div/div[2]/div"
+            "//form/div[2]/div[2]/div[3]/div/div[2]/div"
         ).click()
-
+        time.sleep(3)
         self.driver.find_element(
             By.CSS_SELECTOR,
             "div[class='js-autoload-field china-addressing-district ui dropdown selection']"
         ).click()
-
+        time.sleep(1)
         self.driver.find_element(
             By.XPATH,
-            "//form/div[8]/div[2]/div[4]/div/div[2]/div[1]"
+            "//form/div[2]/div[2]/div[4]/div/div[2]/div[6]"
         ).click()
-
+        time.sleep(3)
     # SET PASSWORD PAGE
 
     def input_first_password(self):

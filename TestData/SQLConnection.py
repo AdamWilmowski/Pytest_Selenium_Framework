@@ -7,9 +7,9 @@ class SQLFunctions:
         self.cursor = self.sql.cursor()
 
     def get_email_value(self):
-        self.cursor.execute("SELECT value FROM values WHERE parameter='email';")
+        self.cursor.execute("SELECT value FROM get_values WHERE parameter='email';")
         email_value = self.cursor.fetchone()[0]
-        self.cursor.execute(f"UPDATE values SET value = {email_value + 1}")
+        self.cursor.execute(f"UPDATE get_values SET value = {email_value + 1}")
         self.sql.commit()
         return email_value
 

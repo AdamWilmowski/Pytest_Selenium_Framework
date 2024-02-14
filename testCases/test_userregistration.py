@@ -1,3 +1,5 @@
+import time
+
 from pageObjects.mainPage import MainPage
 from utilities.BaseClass import BaseClass
 from TestData.TestData import RandomData
@@ -10,13 +12,14 @@ class TestUserRegistration(BaseClass):
 
     def test_register_user_basic(self):
         main_page = MainPage(self.driver)
+        main_page.close_cookies()
         db_version = main_page.get_db_version()
         sql_function = SQLFunctions()
         registration_page = main_page.get_to_registration_page()
         random_data = RandomData()
         customer_data = random_data.generate_random_chinese_info()
         email_value = sql_function.get_email_value()
-        customer_email = "chinacustomertme" + email_value + "@gmail.com"
+        customer_email = "chinacustomertme+" + str(email_value) + "@gmail.com"
         registration_page.input_company_name(customer_data["company"])
         registration_page.input_vat_number(customer_data["vat_number"])
         registration_page.input_registered_address(customer_data["registered_address"])
