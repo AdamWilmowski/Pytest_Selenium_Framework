@@ -1,5 +1,3 @@
-import time
-
 from pageObjects.mainPage import MainPage
 from utilities.BaseClass import BaseClass
 from TestData.TestData import RandomData

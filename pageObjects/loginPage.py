@@ -7,6 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from pageObjects import registrationPage
 from TestData.SQLConnection import SQLFunctions
 
+
 class LoginPage:
 
     def __init__(self, driver):

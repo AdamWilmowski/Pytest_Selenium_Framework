@@ -38,6 +38,9 @@ class BaseClass:
     def back(self):
         self.driver.back()
 
+    def get_to_by_link_text(self, text):
+        self.driver.find_element(By.LINK_TEXT, text).click()
+
     def check_page(self, link):
         if self.driver.current_url != link:
             self.closeCookies()

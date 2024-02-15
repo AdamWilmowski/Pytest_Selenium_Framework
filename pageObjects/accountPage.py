@@ -14,7 +14,10 @@ class AccountPage:
     account_dashboard_values = (By.XPATH, "//tbody/tr/td[2]")
     address_book_button = (By.LINK_TEXT, "地址簿")
     address_book_addresses = (By.ID, "sylius-default-address")
-    txt = 0
+    orders_summary_button = (By.LINK_TEXT, "我的订单")
+    order_summary_dates = (By.XPATH, "//tbody/tr/td[3]")
+    order_summary_totals = (By.XPATH, "//tbody/tr/td[6]")
+    order_summary_numbers = (By.XPATH, "//tbody/tr/td[1]")
 
     def get_account_dashboard_values_dict(self, choice=None):
         values_list = self._fetch_values()
@@ -96,3 +99,19 @@ class AccountPage:
                 "phone_number": address_list[8]
             }
             return address_dict
+
+    def get_to_orders_summary(self):
+        self.driver.find_element(*AccountPage.orders_summary_button).click()
+
+    def get_order_dates(self):
+        dates_list = [date.text for date in self.driver.find_elements(*AccountPage.order_summary_dates)]
+        return dates_list
+
+    def get_order_totals(self):
+        total_list_raw = [total.text for total in self.driver.find_elements(*AccountPage.order_summary_totals)]
+        total_list = [float(total.split()[1]) for total in total_list_raw]
+        return total_list
+
+    def get_order_numbers(self):
+        order_numbers = [number.text for number in self.driver.find_elements(*AccountPage.order_summary_numbers)]
+        return order_numbers
