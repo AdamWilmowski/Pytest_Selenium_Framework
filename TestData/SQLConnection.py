@@ -15,22 +15,23 @@ class SQLFunctions:
 
     def get_random_customer(self, version):
         self.cursor.execute(f"Select email_id from customers "
-                            f"WHERE db_version='{version}' "
+                            f"WHERE db_version='{version}'"
+                            f"AND confirmed=1"
                             f"ORDER BY random()")
         email = self.cursor.fetchone()[0]
         return email
 
     def add_customer_to_database(self, email_id, company_name, vat_number, registered_address, company_phone, bank_name,
-                                 bank_number, send_to_details_address, send_to_phone, contact_person_name,
+                                 bank_number, send_to_detailed_address, send_to_phone, contact_person_name,
                                  contact_person_surname, contact_person_phone, email, db_version):
         insert_query = " INSERT INTO customers (email_id, company_name, vat_number, registered_address, company_phone, " \
-                       "bank_name, bank_number, send_to_details_address, send_to_phone, contact_person_name, " \
-                       "contact_person_surname, contact_person_phone, email, db_version) " \
-                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                       "bank_name, bank_number, send_to_detailed_address, send_to_phone, contact_person_name, " \
+                       "contact_person_surname, contact_person_phone, email, db_version, confirmed) " \
+                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         self.cursor.execute(insert_query,
                             (email_id, company_name, vat_number, registered_address, company_phone, bank_name,
-                             bank_number, send_to_details_address, send_to_phone, contact_person_name,
-                             contact_person_surname, contact_person_phone, email, db_version))
+                             bank_number, send_to_detailed_address, send_to_phone, contact_person_name,
+                             contact_person_surname, contact_person_phone, email, db_version, 0))
         self.sql.commit()
 
     def close_connection(self):

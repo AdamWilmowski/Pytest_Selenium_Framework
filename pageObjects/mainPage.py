@@ -16,9 +16,9 @@ class MainPage:
     login_button = (By.LINK_TEXT, "登录")
     main_header = (By.CSS_SELECTOR, 'div[class="header-security-dropdown-title d-flex align-items-center justify-content-between"]')
     account_dashboard_button = (By.LINK_TEXT, "帐户面板")
-    search_product = (By.XPATH, "//input")
+    search_product = (By.CSS_SELECTOR, 'input[name="search"]')
     product_name = (By.CSS_SELECTOR, 'a[class="product-name font-weight-bold m-t-5"]')
-    add_to_cart_listing = (By.XPATH, '//button[normalize-space()="Add to cart"]')
+    add_to_cart_listing = (By.XPATH, '//button[normalize-space()="添加到购物车"]')
     cart_button = (By.XPATH, "//nav/div/div/div[3]/div[1]")
     checkout_button = (By.LINK_TEXT, "前往结账")
 
@@ -59,7 +59,7 @@ class MainPage:
         self.driver.find_elements(*MainPage.product_name)[number].click()
 
     def add_product_to_cart_listing(self, number: int = 0):
-        self.driver.find_element(*MainPage.add_to_cart_listing)[number].click()
+        self.driver.find_elements(*MainPage.add_to_cart_listing)[number].click()
 
     def wait_till_product_in_cart(self, text):
         WebDriverWait(self.driver, 5).until(

@@ -30,7 +30,7 @@ class RegistrationPage:
     contact_person_email = (By.ID, "app_company_user_customer_email")
     same_as_fapiao_email = (By.CSS_SELECTOR, "label[for='app_company_user_customer_sameFapiaoEmail']")
     contact_person_position = (By.ID, "app_company_user_customer_position")
-    agreements_i_agree = (By.ID, "//div[3]/div/div[1]/div/label")
+    agreements_i_agree = (By.XPATH, "//div[3]/div/div[1]/div/label")
     register_button = (By.CSS_SELECTOR, "button[class='button -primary -register']")
 
     # WELCOME PAGE
@@ -46,7 +46,7 @@ class RegistrationPage:
 
 
     def get_zhu_fapiao(self):
-        return self.driver.find_element(*RegistrationPage.zhu_fapiao)
+        self.driver.find_element(*RegistrationPage.zhu_fapiao).click()
 
     def input_company_name(self, text):
         self.driver.find_element(*RegistrationPage.company_name).send_keys(text)
@@ -87,19 +87,19 @@ class RegistrationPage:
     def input_contact_person_email(self, text):
         self.driver.find_element(*RegistrationPage.contact_person_email).send_keys(text)
 
-    def get_same_fapiao_email_switch(self):
-        return self.driver.find_element(*RegistrationPage.same_as_fapiao_email)
+    def same_fapiao_email_switch(self):
+        self.driver.find_element(*RegistrationPage.same_as_fapiao_email).click()
 
     def input_contact_person_position(self, text):
         self.driver.find_element(*RegistrationPage.contact_person_email).send_keys(text)
 
     def select_all_agreements(self):
-        agreements = self.driver.find_elements(*RegistrationPage.contact_person_email)
+        agreements = self.driver.find_elements(*RegistrationPage.agreements_i_agree)
         for agreement in agreements:
             agreement.click()
 
-    def get_register_button(self):
-        return self.driver.find_element(*RegistrationPage.register_button)
+    def register_customer(self):
+        self.driver.find_element(*RegistrationPage.register_button).click()
 
     def get_welcome_page_items_list(self):
         elements = self.driver.find_elements(*RegistrationPage.welcome_page_items)

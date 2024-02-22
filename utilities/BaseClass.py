@@ -9,6 +9,7 @@ from selenium.common import NoSuchElementException
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from faker import Faker
+from TestData.Secrets import Secrets
 
 
 @pytest.mark.usefixtures("setup")
@@ -64,38 +65,39 @@ class BaseClass:
         self.driver.switch_to.new_window('window')
 
 
-    def get_hyperlinks_from_first_email(self, username, password, server, mailbox="INBOX", subject="Welcome to TME"):
-        try:
-            mail = imaplib.IMAP4_SSL(server)
-            mail.login(username, password)
+    def get_hyperlinks_from_message(self, subject="TME"):
+        email_user = Secrets.email_user
+        email_password = Secrets.python_email_password
+        specific_subject = subject
 
-            mail.select(mailbox)
+        mail = imaplib.IMAP4_SSL('imap.gmail.com')
 
-            _, data = mail.search(None, 'ALL')
-            email_ids = data[0].split()
+        mail.login(email_user, email_password)
 
-            if not email_ids:
-                print("No emails found in the mailbox.")
-                return []
+        mail.select("inbox")
 
-            first_email_id = email_ids[-1]
-            _, msg_data = mail.fetch(first_email_id, "(RFC822)")
-            raw_email = msg_data[0][1]
-            msg = email.message_from_bytes(raw_email)
+        resp, items = mail.search(None, f'SUBJECT "{specific_subject}"')
 
+        items = items[0].split()
+
+        if items:
+            last_email_id = items[-1]
+            resp, data = mail.fetch(last_email_id, "(BODY[TEXT])")
+            raw_email = data[0][1]
+            email_message = email.message_from_bytes(raw_email)
             hyperlinks = []
+            if email_message.is_multipart():
+                for part in email_message.get_payload():
+                    if part.get_content_type() == "text/plain":
+                        body = part.get_payload(decode=True)
+                        email_content = body.decode()
+                        links = re.findall(r"\b(https?://\S+)\b", email_content)
+                        hyperlinks.extend(links)
+                        return hyperlinks
+            else:
+                email_content = email_message.get_payload(decode=True).decode()
+                links = re.findall(r"\b(https?://\S+)\b", email_content)
+                hyperlinks.extend(links)
+                return hyperlinks
 
-            for part in msg.walk():
-                if part.get_content_type() == "text/html":
-                    email_content = part.get_payload(decode=True).decode("utf-8")
-
-                    links = re.findall(r"\b(https?://\S+)\b", email_content)
-                    hyperlinks.extend(links)
-
-            return hyperlinks
-
-        except Exception as e:
-            print("Error:", e)
-
-        finally:
-            mail.logout()
+        mail.logout()
