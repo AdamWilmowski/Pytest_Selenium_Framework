@@ -34,7 +34,9 @@ class BaseClass:
         self.driver.get(url)
 
     def get_to_main(self):
-        self.driver.get("https://betacn-new.tme.hk/en/")
+        current_url = self.get_current_url()
+        main_url = current_url.split("/")
+        self.driver.get(main_url[0])
 
     def back(self):
         self.driver.back()
