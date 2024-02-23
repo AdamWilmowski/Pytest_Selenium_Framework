@@ -16,6 +16,8 @@ class LoginPage:
     username = (By.ID, "_username")
     password = (By.ID, "_password")
     login_button = (By.CSS_SELECTOR, "button[class='button -primary -login m-t-30 m-b-45']")
+    agreement_button = (By.CSS_SELECTOR, 'div[class="ui radio checkbox"]')
+    agreements_agree_button = (By.CSS_SELECTOR, 'button[class="button -primary -medium -fullWidth"]')
 
     def input_username(self, text):
         self.driver.find_element(*LoginPage.username).send_keys(text)
@@ -25,6 +27,13 @@ class LoginPage:
 
     def get_login_button(self):
         return self.driver.find_element(*LoginPage.login_button)
+
+    def accept_after_login_agreement(self):
+        buttons = self.driver.find_elements(*LoginPage.agreement_button)
+        for i in range(len(buttons)):
+            if i % 2 == 0:
+                buttons[i].click()
+        self.driver.find_element(*LoginPage.agreements_agree_button).click()
 
     def get_to_main_with_random_login(self, version):
         sql_function = SQLFunctions()

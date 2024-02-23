@@ -2,13 +2,10 @@ import email
 import imaplib
 import inspect
 import logging
-import random
 import re
 import pytest
 from selenium.common import NoSuchElementException
-from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
-from faker import Faker
 from TestData.Secrets import Secrets
 
 

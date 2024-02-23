@@ -43,8 +43,6 @@ class RegistrationPage:
     set_second_password = (By.ID, "app_user_set_password_password_second")
     submit_password_button = (By.CSS_SELECTOR, "button[class='button -primary -login m-t-30 m-b-10']")
 
-
-
     def get_zhu_fapiao(self):
         self.driver.find_element(*RegistrationPage.zhu_fapiao).click()
 
@@ -105,7 +103,7 @@ class RegistrationPage:
         elements = self.driver.find_elements(*RegistrationPage.welcome_page_items)
         list_of_items = []
         for element in elements:
-            list_of_items.append(element.txt)
+            list_of_items.append(element.text)
         return list_of_items
 
     def select_province(self):
@@ -142,10 +140,10 @@ class RegistrationPage:
     # SET PASSWORD PAGE
 
     def input_first_password(self):
-        self.driver.find_element(*RegistrationPage.set_first_password).send_keys("!QAZ2wsx")
+        self.driver.find_element(*RegistrationPage.set_first_password).send_keys("1qaz@WSX")
 
     def input_second_password(self):
-        self.driver.find_element(*RegistrationPage.set_second_password).send_keys("!QAZ2wsx")
+        self.driver.find_element(*RegistrationPage.set_second_password).send_keys("1qaz@WSX")
 
     def get_save_password_button(self):
         return self.driver.find_element(*RegistrationPage.submit_password_button)

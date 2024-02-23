@@ -37,10 +37,8 @@ def setup(request):
         service = Service(EdgeChromiumDriverManager().install())
         driver = webdriver.Edge(service=service)
         driver.implicitly_wait(wait_time)
-    if request.config.getoption("enviroment") == "test":
+    if request.config.getoption("environment") == "test":
         link = "https://testcn-new.tme.hk"
-    elif request.config.getoption("enviroment") == "beta":
-        link = "https://www.tme.cn/"
     else:
         link = "https://betacn-new.tme.hk"
     driver.get(link)
