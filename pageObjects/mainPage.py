@@ -19,7 +19,7 @@ class MainPage:
     search_product = (By.CSS_SELECTOR, 'input[name="search"]')
     product_name = (By.CSS_SELECTOR, 'a[class="product-name font-weight-bold m-t-5"]')
     add_to_cart_listing = (By.XPATH, '//button[normalize-space()="添加到购物车"]')
-    cart_button = (By.XPATH, "//nav/div/div/div[3]/div[1]")
+    cart_button = (By.XPATH, "//html/body/div[1]/nav/div/div/div[3]/div[1]")
     checkout_button = (By.LINK_TEXT, "前往结账")
 
     def close_cookies(self):

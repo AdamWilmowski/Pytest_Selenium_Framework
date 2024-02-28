@@ -42,7 +42,7 @@ class CheckoutPage:
         return total
 
     def get_to_next_step(self):
-        self.driver.find_element(*CheckoutPage.grand_total).click()
+        self.driver.find_element(*CheckoutPage.checkout_next_step).click()
 
     def get_to_place_order(self):
         self.driver.find_element(*CheckoutPage.place_order).click()
@@ -144,10 +144,10 @@ class CheckoutPage:
         time.sleep(3)
 
     def input_detailed_address_shipping(self, text):
-        self.driver.find_element(CheckoutPage.detailed_address).send_keys(text)
+        self.driver.find_element(*CheckoutPage.detailed_address).send_keys(text)
 
     def input_phone_number_shipping(self, text):
-        self.driver.find_element(CheckoutPage.phone_number_shipping).send_keys(text)
+        self.driver.find_element(*CheckoutPage.phone_number_shipping).send_keys(text)
 
     def select_all_agreements(self):
         radio_buttons = self.driver.find_elements(*CheckoutPage.agreement_radio)
