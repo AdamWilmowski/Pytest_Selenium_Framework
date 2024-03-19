@@ -1,8 +1,12 @@
 import datetime
+
+import pytest
+
 from pageObjects.mainPage import MainPage
 from utilities.BaseClass import BaseClass
 from TestData.TestData import RandomData
 from TestData.SQLConnection import SQLFunctions
+from TestData.TestData import ProductData
 
 
 class TestOrders(BaseClass):
@@ -15,6 +19,7 @@ class TestOrders(BaseClass):
         main_page.search_for_product("USL1M-DIO")
         main_page.add_product_to_cart_listing(0)
         main_page.wait_till_product_in_cart(1)
+        self.back()
         checkout_page = main_page.get_to_checkout()
         total = checkout_page.get_checkout_grand_total()
         assert total > 0
@@ -35,7 +40,8 @@ class TestOrders(BaseClass):
         assert account_page.get_order_dates()[0] == datetime.date.today().strftime("%m/%d/%Y")
         assert account_page.get_order_totals()[0] == total
 
-    def test_order_unregistered(self):
+    @pytest.mark.parametrize("product_one", [ProductData.one_product])
+    def test_order_unregistered(self, product_one):
         main_page = MainPage(self.driver)
         main_page.close_cookies()
         db_version = main_page.get_db_version()
@@ -43,7 +49,7 @@ class TestOrders(BaseClass):
         email_value = sql_function.get_email_value()
         email = "chinacustomertme+" + str(email_value) + "@gmail.com"
         random_data = RandomData()
-        main_page.search_for_product("AX-178")
+        main_page.search_for_product(product_one)
         main_page.add_product_to_cart_listing(0)
         main_page.wait_till_product_in_cart("1")
         self.back()

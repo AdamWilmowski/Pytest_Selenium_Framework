@@ -39,8 +39,10 @@ def setup(request):
         driver.implicitly_wait(wait_time)
     if request.config.getoption("environment") == "test":
         link = "https://testcn-new.tme.hk"
+    elif request.config.getoption("environment") == "prod":
+        link = "https://tme.cn"
     else:
-        link = "https://betacn-new.tme.hk"
+        link = "https://betacn-new.tme.hk/"
     driver.get(link)
     request.cls.driver = driver
     yield

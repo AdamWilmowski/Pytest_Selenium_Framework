@@ -44,3 +44,6 @@ data = random_data.generate_random_chinese_info()
 print(data)
 
 
+class ProductData:
+    one_product = "AX-178"
+
