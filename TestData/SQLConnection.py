@@ -2,8 +2,10 @@ import sqlite3
 
 
 class SQLFunctions:
+    db_path = r'..\testCases\TMECN.db'
+
     def __init__(self):
-        self.sql = sqlite3.connect('TMECN.db')
+        self.sql = sqlite3.connect(SQLFunctions.db_path)
         self.cursor = self.sql.cursor()
 
     def get_email_value(self):
@@ -15,11 +17,11 @@ class SQLFunctions:
 
     def get_random_customer(self, version):
         self.cursor.execute(f"SELECT email_id FROM customers "
-                                f"WHERE db_version='{version}' "
-                                f"AND confirmed=1 "
-                                f"ORDER BY RANDOM()")
+                            f"WHERE db_version='{version}' "
+                            f"AND confirmed=1 "
+                            f"ORDER BY RANDOM()")
         email_value = self.cursor.fetchone()[0]
-        email = "chinacustomertme" + str(email_value) + "@gmail.com"
+        email = "chinacustomertme+" + str(email_value) + "@gmail.com"
         return email
 
     def confirmed_password(self, email_value):
@@ -38,6 +40,12 @@ class SQLFunctions:
                              str(bank_number), send_to_detailed_address, str(send_to_phone), contact_person_name,
                              contact_person_surname, str(contact_person_phone), email, db_version, 0))
         self.sql.commit()
+
+    def search_for_customer_data_by_email(self, data, email):
+        self.cursor.execute(f"SELECT {data} FROM customers "
+                            f"WHERE email='{email}'")
+        customer_information = self.cursor.fetchone()[0]
+        return customer_information
 
     def close_connection(self):
         self.sql.close()

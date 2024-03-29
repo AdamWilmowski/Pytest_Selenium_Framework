@@ -18,7 +18,7 @@ class TestOrders(BaseClass):
         login_page.get_to_main_with_random_login(db_version)
         main_page.search_for_product("USL1M-DIO")
         main_page.add_product_to_cart_listing(0)
-        main_page.wait_till_product_in_cart(1)
+        main_page.wait_till_product_in_cart("1")
         self.back()
         checkout_page = main_page.get_to_checkout()
         total = checkout_page.get_checkout_grand_total()
@@ -28,8 +28,9 @@ class TestOrders(BaseClass):
         assert next_step_total == total
         checkout_page.get_to_place_order()
         checkout_page.wait_for_payment_gate()
-        assert checkout_page.get_payment_gate_title() == "Payment gate symulation"
-        assert checkout_page.get_payment_gate_amount() == total
+        checkout_page.select_payment_gate("b2b")
+        payment_gate_amount = checkout_page.get_payment_gate_amount()
+        assert payment_gate_amount == total
         checkout_page.accept_payment()
         thank_you_values = checkout_page.get_thank_you_values()
         assert thank_you_values["total"] == total
@@ -75,3 +76,10 @@ class TestOrders(BaseClass):
         checkout_page.get_to_next_step()
         checkout_page.select_all_agreements()
         checkout_page.get_to_place_order()
+        checkout_page.wait_for_payment_gate()
+        checkout_page.select_payment_gate("b2b")
+        payment_gate_amount = checkout_page.get_payment_gate_amount()
+        assert payment_gate_amount > 0
+        checkout_page.accept_payment()
+        thank_you_values = checkout_page.get_thank_you_values()
+        assert thank_you_values["payment_type"] == "预付款"

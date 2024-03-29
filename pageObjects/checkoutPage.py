@@ -11,17 +11,18 @@ class CheckoutPage:
     grand_total = (By.ID, "sylius-summary-grand-total")
     checkout_next_step = (By.ID, "next-step")
     place_order = (By.ID, "place-order")
-    payment_gate_title = (By.TAG_NAME, 'h1')
     payment_gate_amount = (By.TAG_NAME, 'h3')
     payment_gate_yes_button = (By.CSS_SELECTOR, 'input[class="ui button green"]')
     thank_you_values = (By.CSS_SELECTOR, 'span[class="font-weight-light"]')
+    payment_gate_select_button = (By.XPATH, '//a[@class="ui button blue"]')
 
     # Unregistered checkout
 
     zhu_fapiao = (By.CSS_SELECTOR, 'label[for="app_checkout_company_data_customer_companyUser_company_fapiaoType_0"]')
     company_name = (By.ID, "app_checkout_company_data_customer_companyUser_company_name")
     vat_number = (By.ID, "app_checkout_company_data_customer_companyUser_company_vatNumber")
-    registered_address_of_company = (By.ID, "app_checkout_company_data_customer_companyUser_company_registeredCompanyAddress")
+    registered_address_of_company = (
+        By.ID, "app_checkout_company_data_customer_companyUser_company_registeredCompanyAddress")
     company_office_number = (By.ID, "app_checkout_company_data_customer_companyUser_company_landlinePhoneNumber")
     bank_name = (By.ID, "app_checkout_company_data_customer_companyUser_company_bankName")
     bank_number = (By.ID, "app_checkout_company_data_customer_companyUser_company_bankAccountNumber")
@@ -35,7 +36,6 @@ class CheckoutPage:
     phone_number_shipping = (By.ID, "app_checkout_shipping_shippingAddress_phoneNumber")
     agreement_radio = (By.CSS_SELECTOR, 'div[class="ui radio checkbox"]')
 
-
     def get_checkout_grand_total(self):
         total_raw = self.driver.find_element(*CheckoutPage.grand_total).text
         total = float(total_raw.split()[1])
@@ -48,12 +48,9 @@ class CheckoutPage:
         self.driver.find_element(*CheckoutPage.place_order).click()
 
     def wait_for_payment_gate(self):
-        WebDriverWait(self.driver, 60*6).until(
-            EC.visibility_of_element_located((By.TAG_NAME, 'h1'))
+        WebDriverWait(self.driver, 60 * 6).until(
+            EC.text_to_be_present_in_element((By.TAG_NAME, 'h1'), "选择付款类型：")
         )
-
-    def get_payment_gate_title(self):
-        return self.driver.find_element(*CheckoutPage.payment_gate_title).text
 
     def get_payment_gate_amount(self):
         return float(self.driver.find_element(*CheckoutPage.payment_gate_amount).text.split()[1])
@@ -69,6 +66,14 @@ class CheckoutPage:
             "payment_type": elements_list_raw[4].text
         }
         return elements_dict
+
+    def select_payment_gate(self, payment_mode="b2b"):
+        if payment_mode == "b2c":
+            selector = 1
+        else:
+            selector = 0
+        self.driver.find_elements(*CheckoutPage.payment_gate_select_button)[selector].click()
+
 
     # UNREGISTERED CHECKOUT
 
@@ -155,7 +160,3 @@ class CheckoutPage:
             if i != 0:
                 if i % 2 != 0:
                     radio_buttons[i].click()
-
-
-
-
