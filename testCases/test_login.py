@@ -13,6 +13,7 @@ class TestLogin(BaseClass):
         sql_function = SQLFunctions()
         email = sql_function.get_random_customer(db_version)
         customer_name = sql_function.search_for_customer_data_by_email("contact_person_name", email)
+        sql_function.close_connection()
         login_page.input_username(email)
         login_page.input_password(Secrets.default_password)
         login_page.get_login_button().click()

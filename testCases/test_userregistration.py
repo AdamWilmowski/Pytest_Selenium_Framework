@@ -107,3 +107,47 @@ class TestUserRegistration(BaseClass):
         account_values_company = account_page.get_account_dashboard_values_dict("company")
         for data in account_values_company:
             assert account_values_company[data] == str(customer_data[data])
+
+    def test_registration_validation(self):
+        main_page = MainPage(self.driver)
+        main_page.close_cookies()
+        registration_page = main_page.get_to_registration_page()
+        time.sleep(10)
+        registration_page.register_customer()
+        validations = registration_page.return_list_of_all_validations()
+        assert len(validations) == 16
+        for validation in validations:
+            assert validation == "该字段为强制性"
+        self.refresh()
+        registration_page.input_text_to_all_input_fields("a")
+        validations = registration_page.return_list_of_all_validations()
+        chinese_only_validations_one = [validations[0], validations[3], validations[5]]
+        chinese_only_validations_two = [validations[8], validations[9], validations[13]]
+        number_length_validations = [validations[2], validations[6], validations[10]]
+        for validation in chinese_only_validations_one:
+            assert validation == "仅限汉字、括号和中划线（半角输入法/英文, 即”-“）"
+        for validation in chinese_only_validations_two:
+            assert validation == "仅限汉字输入"
+        for validation in number_length_validations:
+            assert validation == "该字段必须至少包含11个数字"
+        assert validations[1] == "该字段必须至少包含15个数字"
+        assert validations[4] == "请输入数字"
+        assert validations[7] == "该字段为强制性"
+        assert validations[11] == "格式无效，请输入有效的电子邮件地址，例如smith@domain.cn"
+        assert validations[12] == "格式无效，请输入有效的电子邮件地址，例如smith@domain.cn"
+        self.refresh()
+        registration_page.input_text_to_all_input_fields("请"*65)
+        validations = registration_page.return_list_of_all_validations()
+        assert len(validations) == 16
+        validations_64 = [validations[0], validations[4], validations[6]]
+        for validation in validations_64:
+            assert validation == "字段的最大长度为64个字符"
+        assert validations[1] == "字段的最大长度为20个字符"
+        assert validations[2] == "字段的最大长度为60个字符"
+        validations_15 = [validations[3], validations[8], validations[12]]
+        for validation in validations_15:
+            assert validation == "字段的最大长度为15个字符"
+        assert validations[5] == "字段的最大长度为30个字符"
+        validations_35 = [validations[7], validations[10], validations[11]]
+        for validation in validations_35:
+            assert validation == "字段的最大长度为35个字符"

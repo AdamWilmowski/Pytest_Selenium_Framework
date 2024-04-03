@@ -14,10 +14,15 @@ class AccountPage:
     account_dashboard_values = (By.XPATH, "//tbody/tr/td[2]")
     address_book_button = (By.LINK_TEXT, "地址簿")
     address_book_addresses = (By.ID, "sylius-default-address")
+
+    # Order Section
+
     orders_summary_button = (By.LINK_TEXT, "我的订单")
     order_summary_dates = (By.XPATH, "//tbody/tr/td[3]")
     order_summary_totals = (By.XPATH, "//tbody/tr/td[6]")
     order_summary_numbers = (By.XPATH, "//tbody/tr/td[1]")
+
+    #
 
     def get_account_dashboard_values_dict(self, choice=None):
         values_list = self._fetch_values()

@@ -29,9 +29,12 @@ class RegistrationPage:
     contact_person_phone = (By.ID, "app_company_user_customer_phoneNumber")
     contact_person_email = (By.ID, "app_company_user_customer_email")
     same_as_fapiao_email = (By.CSS_SELECTOR, "label[for='app_company_user_customer_sameFapiaoEmail']")
+    fapiao_email_address = (By.ID, "app_company_user_customer_fapiaoEmailAddress")
     contact_person_position = (By.ID, "app_company_user_customer_position")
     agreements_i_agree = (By.XPATH, "//div[3]/div/div[1]/div/label")
     register_button = (By.CSS_SELECTOR, "button[class='button -primary -register']")
+    registration_validation = (By.CSS_SELECTOR, 'div[class="alert"]')
+    registration_input_fields = (By.CSS_SELECTOR, "input[type='text']")
 
     # WELCOME PAGE
 
@@ -98,6 +101,25 @@ class RegistrationPage:
 
     def register_customer(self):
         self.driver.find_element(*RegistrationPage.register_button).click()
+
+    def return_list_of_all_validations(self):
+        validations_elements = self.driver.find_elements(*RegistrationPage.registration_validation)
+        validations = [element.text for element in validations_elements]
+        return validations
+
+    def input_text_to_all_input_fields(self, text):
+        input_fields = self.driver.find_elements(*RegistrationPage.registration_input_fields)[6:]
+        for input_field in input_fields:
+            input_field.send_keys(text)
+        self.driver.find_element(*RegistrationPage.contact_person_email).send_keys(text)
+        self.driver.find_element(*RegistrationPage.fapiao_email_address).send_keys(text)
+
+    def clear_text_from_all_input_fields(self):
+        input_fields = self.driver.find_elements(*RegistrationPage.registration_input_fields)[6:]
+        for input_field in input_fields:
+            input_field.clear()
+        self.driver.find_element(*RegistrationPage.contact_person_email).clear()
+        self.driver.find_element(RegistrationPage.fapiao_email_address).clear()
 
     def get_welcome_page_items_list(self):
         elements = self.driver.find_elements(*RegistrationPage.welcome_page_items)
