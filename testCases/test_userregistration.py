@@ -151,3 +151,12 @@ class TestUserRegistration(BaseClass):
         validations_35 = [validations[7], validations[10], validations[11]]
         for validation in validations_35:
             assert validation == "字段的最大长度为35个字符"
+        self.refresh()
+        registration_page.input_text_to_all_input_fields("1"*21)
+        validations = registration_page.return_list_of_all_validations()
+        assert validations[1] == "字段的最大长度为20个字符"
+        assert validations[2] == "字段的最大长度为15个字符"
+        assert validations[5] == "字段的最大长度为15个字符"
+        assert validations[6] == "该字段必须包含6数字"
+        assert validations[9] == "字段的最大长度为15个字符"
+
