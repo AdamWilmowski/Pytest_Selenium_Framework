@@ -32,8 +32,9 @@ class BaseClass:
 
     def get_to_main(self):
         current_url = self.get_current_url()
-        main_url = current_url.split("/")
-        self.driver.get(main_url[0])
+        url_list = current_url.split("/")
+        main_url = "https://" + url_list[2]
+        self.get_to(main_url)
 
     def back(self):
         self.driver.back()

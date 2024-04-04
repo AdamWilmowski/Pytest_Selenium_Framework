@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from TestData.Secrets import Secrets
 
 
 class RegistrationPage:
@@ -162,10 +163,10 @@ class RegistrationPage:
     # SET PASSWORD PAGE
 
     def input_first_password(self):
-        self.driver.find_element(*RegistrationPage.set_first_password).send_keys("1qaz@WSX")
+        self.driver.find_element(*RegistrationPage.set_first_password).send_keys(Secrets.default_password)
 
     def input_second_password(self):
-        self.driver.find_element(*RegistrationPage.set_second_password).send_keys("1qaz@WSX")
+        self.driver.find_element(*RegistrationPage.set_second_password).send_keys(Secrets.default_password)
 
     def get_save_password_button(self):
         return self.driver.find_element(*RegistrationPage.submit_password_button)

@@ -21,6 +21,7 @@ class MainPage:
     add_to_cart_listing = (By.XPATH, '//button[normalize-space()="添加到购物车"]')
     cart_button = (By.XPATH, "//html/body/div[1]/nav/div/div/div[3]/div[1]")
     checkout_button = (By.LINK_TEXT, "前往结账")
+    logout_button = (By.LINK_TEXT, "退出登录")
 
     def close_cookies(self):
         try:
@@ -74,3 +75,6 @@ class MainPage:
         checkout_page = checkoutPage.CheckoutPage(self.driver)
         return checkout_page
 
+    def logout_customer(self):
+        self.driver.find_element(*MainPage.main_header).click()
+        self.driver.find_element(*MainPage.logout_button).click()

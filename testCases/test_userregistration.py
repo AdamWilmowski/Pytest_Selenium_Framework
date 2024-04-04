@@ -83,7 +83,7 @@ class TestUserRegistration(BaseClass):
         welcome_page_items = registration_page.get_welcome_page_items_list()
         for i in range(len(list_to_compare)):
             assert list_to_compare[i] == welcome_page_items[i]
-        time.sleep(10)
+        time.sleep(15)
         set_password_link = self.get_hyperlink_from_message()
         self.get_to(set_password_link)
         registration_page.input_first_password()
@@ -112,7 +112,7 @@ class TestUserRegistration(BaseClass):
         main_page = MainPage(self.driver)
         main_page.close_cookies()
         registration_page = main_page.get_to_registration_page()
-        time.sleep(10)
+        time.sleep(15)
         registration_page.register_customer()
         validations = registration_page.return_list_of_all_validations()
         assert len(validations) == 16

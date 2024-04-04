@@ -22,7 +22,18 @@ class AccountPage:
     order_summary_totals = (By.XPATH, "//tbody/tr/td[6]")
     order_summary_numbers = (By.XPATH, "//tbody/tr/td[1]")
 
-    #
+    # Company User Section
+
+    company_user_section = (By.LINK_TEXT, "用户")
+    add_company_user_button = (By.CSS_SELECTOR, 'a[class="button -primary d-inline-block m-t-20"]')
+    company_user_name = (By.ID, "app_new_company_user_customer_firstName")
+    company_user_surname = (By.ID, "app_new_company_user_customer_lastName")
+    company_user_email = (By.ID, "app_new_company_user_customer_email")
+    company_user_phone_number = (By.ID, "app_new_company_user_customer_phoneNumber")
+    add_button = (By.CSS_SELECTOR, 'button[class="button -primary"]')
+    company_user_list_emails = (By.XPATH, "//tbody/tr/td[2]")
+    company_user_list_roles = (By.XPATH, "//tbody/tr/td[3]")
+    company_user_list_statuses = (By.XPATH, "//tbody/tr/td[4]")
 
     def get_account_dashboard_values_dict(self, choice=None):
         values_list = self._fetch_values()
@@ -120,3 +131,39 @@ class AccountPage:
     def get_order_numbers(self):
         order_numbers = [number.text for number in self.driver.find_elements(*AccountPage.order_summary_numbers)]
         return order_numbers
+
+    def get_to_company_users(self):
+        self.driver.find_element(*AccountPage.company_user_section).click()
+
+    def add_new_company_user(self):
+        self.driver.find_element(*AccountPage.add_company_user_button).click()
+
+    def input_customer_name(self, text):
+        self.driver.find_element(*AccountPage.company_user_name).send_keys(text)
+
+    def input_customer_surname(self, text):
+        self.driver.find_element(*AccountPage.company_user_surname).send_keys(text)
+
+    def input_customer_emil(self, text):
+        self.driver.find_element(*AccountPage.company_user_email).send_keys(text)
+
+    def input_customer_phone(self, text):
+        self.driver.find_element(*AccountPage.company_user_phone_number).send_keys(text)
+
+    def add_company_user(self):
+        self.driver.find_element(*AccountPage.add_button).click()
+
+    def get_company_users_data_list(self, list_type):
+        """
+        Available list types:
+        1. emails
+        3. roles
+        2. statuses
+        """
+        if list_type not in ["emails", "roles", "statuses"]:
+            raise "Not Expected et_company_users_data_list function argument "
+        list_attribute_name = f"company_user_list_{list_type}"
+        list_of_elements = self.driver.find_elements(*getattr(AccountPage, list_attribute_name))
+        list_of_elements_text = [i.text for i in list_of_elements]
+        return list_of_elements_text
+
