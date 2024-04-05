@@ -11,7 +11,8 @@ from TestData.Secrets import Secrets
 
 
 class TestCompanyUser(BaseClass):
-    def test_add_company_user_admin(self):
+    @pytest.mark.parametrize("role", ["admin", "user"])
+    def test_add_company_user_admin(self, role):
         main_page = MainPage(self.driver)
         main_page.close_cookies()
         db_version = main_page.get_db_version()
@@ -30,6 +31,8 @@ class TestCompanyUser(BaseClass):
         account_page = main_page.get_to_account_dashboard()
         account_page.get_to_company_users()
         account_page.add_new_company_user()
+        if role == "user":
+            account_page.change_from_admin_to_default_user()
         account_page.input_customer_name(customer_data['name'])
         account_page.input_customer_surname(customer_data['surname'])
         account_page.input_customer_emil(email)
@@ -38,10 +41,15 @@ class TestCompanyUser(BaseClass):
         company_user_email_list = account_page.get_company_users_data_list("emails")
         assert company_user_email_list[0] == email
         company_user_roles = account_page.get_company_users_data_list("roles")
-        assert company_user_roles[0] == "公司管理员"
+        if role == "admin":
+            assert company_user_roles[0] == "公司管理员"
+            is_admin = 1
+        else:
+            assert company_user_roles[0] == "默认用户"
+            is_admin = 0
         company_user_statuses_list = account_page.get_company_users_data_list("statuses")
         assert company_user_statuses_list[0] == "未验证电子邮件"
-        sql_function.add_company_user_to_database(1, customer_data['name'], customer_data['surname'],
+        sql_function.add_company_user_to_database(is_admin, customer_data['name'], customer_data['surname'],
                                                   customer_data['phone_number'], int(email_value), email,
                                                   int(parent_email_id), db_version)
         self.get_to_main()
@@ -74,7 +82,26 @@ class TestCompanyUser(BaseClass):
         assert company_user_roles_list[0] == "公司管理员"
         company_user_statuses_list = account_page.get_company_users_data_list("statuses")
         assert company_user_statuses_list[0] == "活跃"
-        account_page.add_new_company_user()
-        url = self.get_current_url()
-        assert url == "https://betacn-new.tme.hk/account/company/users/add"
+        if role == "admin":
+            account_page.add_new_company_user()
+            url = self.get_current_url()
+            assert url == "https://betacn-new.tme.hk/account/company/users/add"
+        else:
+            try:
+                account_page.add_new_company_user()
+                raise "Default company user can register new account"
+            except NoSuchElementException:
+                pass
+
+    def test_company_user_validations(self):
+        main_page = MainPage(self.driver)
+        main_page.close_cookies()
+        db_version = main_page.get_db_version()
+        random_data = RandomData()
+        customer_data = random_data.generate_random_chinese_info()
+        login_page = main_page.get_to_login_page()
+        login_page.get_to_main_with_random_login()
+        main_page.get_page_header().click()
+
+
 
