@@ -47,7 +47,7 @@ class TestCompanyUser(BaseClass):
         self.get_to_main()
         main_page.logout_customer()
         self.refresh()
-        time.sleep(20)
+        time.sleep(25)
         hyperlink = self.get_hyperlink_from_message()
         self.get_to(hyperlink)
         registration_page = RegistrationPage(self.driver)
@@ -65,9 +65,16 @@ class TestCompanyUser(BaseClass):
             except NoSuchElementException:
                 pass
         assert customer_data["name"] in main_page.get_page_header().text
-
-
-
-
-
+        main_page.get_page_header().click()
+        main_page.get_to_account_dashboard()
+        account_page.get_to_company_users()
+        company_user_email_list = account_page.get_company_users_data_list("emails")
+        assert company_user_email_list[0] == parent_email
+        company_user_roles_list = account_page.get_company_users_data_list("roles")
+        assert company_user_roles_list[0] == "公司管理员"
+        company_user_statuses_list = account_page.get_company_users_data_list("statuses")
+        assert company_user_statuses_list[0] == "活跃"
+        account_page.add_new_company_user()
+        url = self.get_current_url()
+        assert url == "https://betacn-new.tme.hk/account/company/users/add"
 

@@ -66,7 +66,7 @@ class SQLFunctions:
             print(f"OperationalError: {e}")
 
     def confirm_company_user(self, email_value):
-        self.cursor.execute(f"UPDATE company_users SET confirmed=1 WHERE email_id={email_value}")
+        self.cursor.execute(f"UPDATE company_user SET confirmed=1 WHERE email_id={email_value}")
         self.sql.commit()
 
     def search_for_customer_data_by_email(self, data, email):

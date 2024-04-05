@@ -1,5 +1,6 @@
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
@@ -26,6 +27,7 @@ class AccountPage:
 
     company_user_section = (By.LINK_TEXT, "用户")
     add_company_user_button = (By.CSS_SELECTOR, 'a[class="button -primary d-inline-block m-t-20"]')
+    select_role = (By.ID, "app_new_company_user_customer_user_companyRole")
     company_user_name = (By.ID, "app_new_company_user_customer_firstName")
     company_user_surname = (By.ID, "app_new_company_user_customer_lastName")
     company_user_email = (By.ID, "app_new_company_user_customer_email")
@@ -137,6 +139,11 @@ class AccountPage:
 
     def add_new_company_user(self):
         self.driver.find_element(*AccountPage.add_company_user_button).click()
+
+    def change_from_admin_to_default_user(self):
+        select_element = self.driver.find_element(*AccountPage.select_role)
+        select = Select(select_element)
+        select.select_by_value("ROLE_COMPANY_DEFAULT_USER")
 
     def input_customer_name(self, text):
         self.driver.find_element(*AccountPage.company_user_name).send_keys(text)
