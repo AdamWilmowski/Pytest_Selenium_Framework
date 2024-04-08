@@ -97,11 +97,42 @@ class TestCompanyUser(BaseClass):
         main_page = MainPage(self.driver)
         main_page.close_cookies()
         db_version = main_page.get_db_version()
-        random_data = RandomData()
-        customer_data = random_data.generate_random_chinese_info()
         login_page = main_page.get_to_login_page()
-        login_page.get_to_main_with_random_login()
+        login_page.get_to_main_with_random_login(db_version)
         main_page.get_page_header().click()
+        account_page = main_page.get_to_account_dashboard()
+        account_page.get_to_company_users()
+        account_page.add_new_company_user()
+        account_page.add_company_user()
+        validations = account_page.get_list_of_company_user_validations()
+        assert len(validations) == 4
+        for validation in validations:
+            assert validation == "该字段为强制性"
+        account_page.input_customer_name("Abc")
+        account_page.input_customer_surname("Abc")
+        account_page.input_customer_emil("Abc")
+        account_page.input_customer_phone("Abc")
+        account_page.add_company_user()
+        validations = account_page.get_list_of_company_user_validations()
+        assert validations[0] == "仅限汉字输入"
+        assert validations[1] == "仅限汉字输入"
+        assert validations[2] == "格式无效，请输入有效的电子邮件地址，例如smith@domain.cn"
+        assert validations[3] == "电话号码无效"
+        self.refresh()
+        account_page.clear_all_input_fields()
+        account_page.input_customer_name("输"*36)
+        account_page.input_customer_surname("输"*36)
+        account_page.input_customer_emil("a"*62+"@b.c")
+        account_page.input_customer_phone("1"*10)
+        account_page.add_company_user()
+        validations = account_page.get_list_of_company_user_validations()
+        assert validations[0] == "名称”字段的最大长度为 35 个字符。"
+        assert validations[1] == "名称”字段的最大长度为 35 个字符。"
+        assert validations[2] == "“电子邮件”字段的最大长度为64个字符"
+        assert validations[3] == "该字段必须包含最少 11 位数字，最多包含 15 位数字。"
+        self.refresh()
+
+
 
 
 

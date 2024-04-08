@@ -32,6 +32,7 @@ class AccountPage:
     company_user_surname = (By.ID, "app_new_company_user_customer_lastName")
     company_user_email = (By.ID, "app_new_company_user_customer_email")
     company_user_phone_number = (By.ID, "app_new_company_user_customer_phoneNumber")
+    company_user_validation = (By.CSS_SELECTOR, 'div[class="ui red pointing label sylius-validation-error"]')
     add_button = (By.CSS_SELECTOR, 'button[class="button -primary"]')
     company_user_list_emails = (By.XPATH, "//tbody/tr/td[2]")
     company_user_list_roles = (By.XPATH, "//tbody/tr/td[3]")
@@ -155,7 +156,18 @@ class AccountPage:
         self.driver.find_element(*AccountPage.company_user_email).send_keys(text)
 
     def input_customer_phone(self, text):
-        self.driver.find_element(*AccountPage.company_user_phone_number).send_keys(text)
+        self.driver.find_element(*AccountPage.company_user_email).send_keys(text)
+
+    def clear_all_input_fields(self):
+        self.driver.find_element(*AccountPage.company_user_name).clear()
+        self.driver.find_element(*AccountPage.company_user_surname).clear()
+        self.driver.find_element(*AccountPage.company_user_email).clear()
+        self.driver.find_element(*AccountPage.company_user_email).clear()
+
+    def get_list_of_company_user_validations(self):
+        elements = self.driver.find_elements(*AccountPage.company_user_validation)
+        elements_text = [element.text for element in elements]
+        return elements_text
 
     def add_company_user(self):
         self.driver.find_element(*AccountPage.add_button).click()
