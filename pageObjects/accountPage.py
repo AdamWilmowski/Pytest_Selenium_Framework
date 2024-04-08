@@ -38,6 +38,15 @@ class AccountPage:
     company_user_list_roles = (By.XPATH, "//tbody/tr/td[3]")
     company_user_list_statuses = (By.XPATH, "//tbody/tr/td[4]")
 
+    # Reset Password Section
+
+    reset_password_section = (By.LINK_TEXT, "更改密码")
+    reset_password_current_password = (By.ID, "sylius_user_change_password_currentPassword")
+    reset_password_new_password = (By.ID, "sylius_user_change_password_newPassword_first")
+    reset_password_new_password_confirm = (By.ID, "sylius_user_change_password_newPassword_second")
+    reset_password_button = (By.CSS_SELECTOR, 'button[class="button -primary -fullWidth"]')
+
+
     def get_account_dashboard_values_dict(self, choice=None):
         values_list = self._fetch_values()
         labels_list = self._fetch_labels()
@@ -186,3 +195,17 @@ class AccountPage:
         list_of_elements_text = [i.text for i in list_of_elements]
         return list_of_elements_text
 
+    def get_to_reset_password(self):
+        self.driver.find_element(*AccountPage.reset_password_section).click()
+
+    def input_reset_password_current_password(self, text):
+        self.driver.find_element(*AccountPage.reset_password_current_password).send_keys(text)
+
+    def input_reset_password_new_password(self, text):
+        self.driver.find_element(*AccountPage.reset_password_new_password).send_keys(text)
+
+    def input_reset_password_new_password_confirm(self, text):
+        self.driver.find_element(*AccountPage.reset_password_new_password_confirm).send_keys(text)
+
+    def reset_password(self):
+        self.driver.find_element(*AccountPage.reset_password_button).click()

@@ -64,7 +64,7 @@ class BaseClass:
     def open_new_window(self):
         self.driver.switch_to.new_window('window')
 
-    def get_hyperlink_from_message(self, subject="TME"):
+    def get_hyperlink_from_message(self, subject="TME", search_pattern="set-password"):
         email_user = Secrets.email_user
         email_password = Secrets.python_email_password
         specific_subject = subject
@@ -77,8 +77,8 @@ class BaseClass:
         items = items[0].split()
 
         if items:
-            last_three_emails = items[-3:]
-            for email_id in last_three_emails:
+            last_two_emails = items[-2:]
+            for email_id in last_two_emails:
                 resp, data = mail.fetch(email_id, "(BODY[TEXT])")
                 raw_email = data[0][1]
                 email_message = email.message_from_bytes(raw_email)
@@ -87,12 +87,12 @@ class BaseClass:
                         if part.get_content_type() == "text/plain":
                             body = part.get_payload(decode=True)
                             email_content = body.decode()
-                            match = re.search(r"\b(https?://\S*set-password/\S*)\b", email_content)
+                            match = re.search(rf"\b(https?://\S*{search_pattern}/\S*)\b", email_content)
                             if match:
                                 return match.group(1)
                 else:
                     email_content = email_message.get_payload(decode=True).decode()
-                    match = re.search(r"\b(https?://\S*set-password/\S*)\b", email_content)
+                    match = re.search(rf"\b(https?://\S*{search_pattern}/\S*)\b", email_content)
                     if match:
                         return match.group(1)
 
