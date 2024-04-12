@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
-from pageObjects import registrationPage, loginPage, accountPage, checkoutPage
+from pageObjects import registrationPage, loginPage, accountPage, checkoutPage, cartPage
 
 class MainPage:
     def __init__(self, driver):
@@ -20,6 +20,7 @@ class MainPage:
     product_name = (By.CSS_SELECTOR, 'a[class="product-name font-weight-bold m-t-5"]')
     add_to_cart_listing = (By.XPATH, '//button[normalize-space()="添加到购物车"]')
     cart_button = (By.XPATH, "//html/body/div[1]/nav/div/div/div[3]/div[1]")
+    go_to_cart_button = (By.LINK_TEXT, "查看和编辑购物车")
     checkout_button = (By.LINK_TEXT, "前往结账")
     logout_button = (By.LINK_TEXT, "退出登录")
 
@@ -74,6 +75,12 @@ class MainPage:
         self.driver.find_element(*MainPage.checkout_button).click()
         checkout_page = checkoutPage.CheckoutPage(self.driver)
         return checkout_page
+
+    def get_to_cart(self):
+        self.driver.find_element(*MainPage.cart_button).click()
+        self.driver.find_element(*MainPage.go_to_cart_button).click()
+        cart_page = cartPage.CartPage(self.driver)
+        return cart_page
 
     def logout_customer(self):
         self.driver.find_element(*MainPage.main_header).click()

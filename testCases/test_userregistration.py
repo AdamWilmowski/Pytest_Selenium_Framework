@@ -67,7 +67,6 @@ class TestUserRegistration(BaseClass):
         registration_page.input_contact_person_email(customer_email)
         registration_page.same_fapiao_email_switch()
         registration_page.select_all_agreements()
-        time.sleep(20)
         registration_page.register_customer()
         sql_function.add_customer_to_database(
             email_value, customer_data["company"], customer_data["vat_number"], customer_data["registered_address"],
@@ -83,7 +82,7 @@ class TestUserRegistration(BaseClass):
         welcome_page_items = registration_page.get_welcome_page_items_list()
         for i in range(len(list_to_compare)):
             assert list_to_compare[i] == welcome_page_items[i]
-        time.sleep(15)
+        time.sleep(25)
         set_password_link = self.get_hyperlink_from_message()
         self.get_to(set_password_link)
         registration_page.input_first_password()

@@ -189,7 +189,7 @@ class AccountPage:
         2. statuses
         """
         if list_type not in ["emails", "roles", "statuses"]:
-            raise "Not Expected et_company_users_data_list function argument "
+            raise "Not Expected get_company_users_data_list function argument "
         list_attribute_name = f"company_user_list_{list_type}"
         list_of_elements = self.driver.find_elements(*getattr(AccountPage, list_attribute_name))
         list_of_elements_text = [i.text for i in list_of_elements]
