@@ -74,7 +74,6 @@ class CheckoutPage:
             selector = 0
         self.driver.find_elements(*CheckoutPage.payment_gate_select_button)[selector].click()
 
-
     # UNREGISTERED CHECKOUT
 
     def select_zhu_fapiao(self):

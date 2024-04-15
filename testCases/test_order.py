@@ -43,7 +43,6 @@ class TestOrders(BaseClass):
     def test_order_unregistered(self, product_one):
         main_page = MainPage(self.driver)
         main_page.close_cookies()
-        db_version = main_page.get_db_version()
         sql_function = SQLFunctions()
         email_value = sql_function.get_email_value()
         email = "chinacustomertme+" + str(email_value) + "@gmail.com"

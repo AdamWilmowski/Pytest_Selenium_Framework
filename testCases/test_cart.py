@@ -1,12 +1,7 @@
-import time
 import pytest
 import json
 from utilities.BaseClass import BaseClass
-from utilities.fixtures import get_product_data
 from pageObjects.mainPage import MainPage
-from TestData.SQLConnection import SQLFunctions
-from TestData.Secrets import Secrets
-from pageObjects.accountPage import AccountPage
 
 
 class TestCart(BaseClass):
@@ -14,7 +9,6 @@ class TestCart(BaseClass):
     def test_add_to_cart(self, get_product_data):
         main_page = MainPage(self.driver)
         main_page.close_cookies()
-        db_version = main_page.get_db_version()
         with open("../JSON_files/products_data.json") as products:
             products = json.load(products)
         product_list = list(products.keys())[:4]
@@ -33,5 +27,3 @@ class TestCart(BaseClass):
         moq_product_1 = products[product_list[0]]["moq"]
         list_of_products_total = cart_page.get_list_of_product_attributes("price_total")
         assert list_of_products_total[0] == moq_product_1 * prices_list_product_1[0]
-
-

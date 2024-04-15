@@ -6,7 +6,6 @@ from pageObjects.registrationPage import RegistrationPage
 from utilities.BaseClass import BaseClass
 from TestData.TestData import RandomData
 from TestData.SQLConnection import SQLFunctions
-from pageObjects.loginPage import LoginPage
 from TestData.Secrets import Secrets
 
 
@@ -131,8 +130,3 @@ class TestCompanyUser(BaseClass):
         assert validations[2] == "“电子邮件”字段的最大长度为64个字符"
         assert validations[3] == "该字段必须包含最少 11 位数字，最多包含 15 位数字。"
         self.refresh()
-
-
-
-
-

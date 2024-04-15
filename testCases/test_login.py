@@ -1,5 +1,4 @@
 import time
-
 from utilities.BaseClass import BaseClass
 from pageObjects.mainPage import MainPage
 from TestData.SQLConnection import SQLFunctions

@@ -1,6 +1,5 @@
 import json
 import mariadb
-import sys
 from TestData.Secrets import Secrets
 from utilities.mariaDBqueries import MariaDBSQLQueries
 

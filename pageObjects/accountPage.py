@@ -1,10 +1,5 @@
-from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
-from pageObjects import registrationPage
 
 
 class AccountPage:
@@ -45,7 +40,6 @@ class AccountPage:
     reset_password_new_password = (By.ID, "sylius_user_change_password_newPassword_first")
     reset_password_new_password_confirm = (By.ID, "sylius_user_change_password_newPassword_second")
     reset_password_button = (By.CSS_SELECTOR, 'button[class="button -primary -fullWidth"]')
-
 
     def get_account_dashboard_values_dict(self, choice=None):
         values_list = self._fetch_values()

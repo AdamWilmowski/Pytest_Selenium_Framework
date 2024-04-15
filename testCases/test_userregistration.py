@@ -13,7 +13,6 @@ class TestUserRegistration(BaseClass):
     def test_register_user_manual_helper(self):
         main_page = MainPage(self.driver)
         main_page.close_cookies()
-        db_version = main_page.get_db_version()
         sql_function = SQLFunctions()
         registration_page = main_page.get_to_registration_page()
         random_data = RandomData()
@@ -158,4 +157,3 @@ class TestUserRegistration(BaseClass):
         assert validations[5] == "字段的最大长度为15个字符"
         assert validations[6] == "该字段必须包含6数字"
         assert validations[9] == "字段的最大长度为15个字符"
-

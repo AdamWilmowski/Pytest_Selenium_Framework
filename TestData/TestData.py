@@ -1,7 +1,3 @@
-import random
-import string
-import names
-import randomname
 from faker import Faker
 import random
 

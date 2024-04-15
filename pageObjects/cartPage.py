@@ -1,7 +1,4 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import time
 
 
 class CartPage:
@@ -40,9 +37,3 @@ class CartPage:
         weight_object = self.driver.find_elements(*CartPage.total_weight)
         weight = weight_object.text.split()[0]
         return weight
-
-
-
-
-
-

@@ -12,14 +12,15 @@ from TestData.Secrets import Secrets
 @pytest.mark.usefixtures("setup")
 class BaseClass:
 
-    def getLogger(self):
-        loggerName = inspect.stack()[1][3]
-        logger = logging.getLogger(loggerName)
-        fileHandler = logging.FileHandler('logfile.log')
+    @staticmethod
+    def get_logger():
+        loggername = inspect.stack()[1][3]
+        logger = logging.getLogger(loggername)
+        filehandler = logging.FileHandler('logfile.log')
         formatter = logging.Formatter("%(asctime)s :%(levelname)s : %(name)s :%(message)s")
-        fileHandler.setFormatter(formatter)
+        filehandler.setFormatter(formatter)
 
-        logger.addHandler(fileHandler)  # filehandler object
+        logger.addHandler(filehandler)  # filehandler object
 
         logger.setLevel(logging.DEBUG)
         return logger
@@ -64,7 +65,8 @@ class BaseClass:
     def open_new_window(self):
         self.driver.switch_to.new_window('window')
 
-    def get_hyperlink_from_message(self, subject="TME", search_pattern="set-password"):
+    @staticmethod
+    def get_hyperlink_from_message(subject="TME", search_pattern="set-password"):
         email_user = Secrets.email_user
         email_password = Secrets.python_email_password
         specific_subject = subject

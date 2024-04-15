@@ -2,17 +2,17 @@ import pytest
 import json
 from mariaDBconnector import MariaDBConnector
 
-vat_number = 1.13
-number_of_spaces = 0.00001
-
-
-def transform_price_to_correct_float(integer):
-    correct_value = integer * number_of_spaces * vat_number
-    return round(correct_value, 5)
-
 
 @pytest.fixture()
 def get_product_data(request):
+    def transform_price_to_correct_float(integer: int):
+        with open("../JSON_files/shop_data.json", "r") as shop_file:
+            shop_data = data.load(shop_file)
+        number_of_spaces = shop_data["number_of_spaces"]
+        vat_rate = shop_data["vat_rate"]
+        correct_value = integer * number_of_spaces * vat_rate
+        return round(correct_value, 5)
+
     query_type = request.param
     maria_db = MariaDBConnector("beta32")
     if query_type == "basic_products":
@@ -45,4 +45,5 @@ def get_product_data(request):
 
     with open('../JSON_files/products_data.json', 'w') as file:
         json.dump(transformed_data, file, indent=4)
+
 

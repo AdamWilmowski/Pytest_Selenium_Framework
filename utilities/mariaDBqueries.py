@@ -78,4 +78,3 @@ class MariaDBSQLQueries:
             AND bt.price > 1000000000
         LIMIT 50
         """
-
