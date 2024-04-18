@@ -8,6 +8,7 @@ from TestData.SQLConnection import SQLFunctions
 from pageObjects.loginPage import LoginPage
 
 
+
 class TestUserRegistration(BaseClass):
 
     def test_register_user_manual_helper(self):
@@ -81,7 +82,6 @@ class TestUserRegistration(BaseClass):
         welcome_page_items = registration_page.get_welcome_page_items_list()
         for i in range(len(list_to_compare)):
             assert list_to_compare[i] == welcome_page_items[i]
-        time.sleep(25)
         set_password_link = self.get_hyperlink_from_message()
         self.get_to(set_password_link)
         registration_page.input_first_password()

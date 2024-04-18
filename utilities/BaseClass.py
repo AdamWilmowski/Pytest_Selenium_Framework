@@ -3,7 +3,10 @@ import imaplib
 import inspect
 import logging
 import re
+import time
+
 import pytest
+import json
 from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 from TestData.Secrets import Secrets
@@ -66,38 +69,55 @@ class BaseClass:
         self.driver.switch_to.new_window('window')
 
     @staticmethod
-    def get_hyperlink_from_message(subject="TME", search_pattern="set-password"):
+    def get_hyperlink_from_message(subject="TME", search_pattern="set-password", wait_time=60):
         email_user = Secrets.email_user
         email_password = Secrets.python_email_password
         specific_subject = subject
 
+        with open("../JSON_files/emails.json", "r") as email_file:
+            email_data = json.load(email_file)
+
+        last_email_value = email_data[search_pattern]
+
+        def search_for_hyperlink(mail, specific_subject, search_pattern):
+            mail.select("inbox")
+            resp, items = mail.search(None, f'SUBJECT "{specific_subject}"')
+            items = items[0].split()
+
+            if items:
+                last_two_emails = items[-2:]
+                for email_id in last_two_emails:
+                    resp, data = mail.fetch(email_id, "(BODY[TEXT])")
+                    raw_email = data[0][1]
+                    email_message = email.message_from_bytes(raw_email)
+                    if email_message.is_multipart():
+                        for part in email_message.get_payload():
+                            if part.get_content_type() == "text/plain":
+                                body = part.get_payload(decode=True)
+                                email_content = body.decode()
+                                match = re.search(rf"\b(https?://\S*{search_pattern}/\S*)\b", email_content)
+                                if match:
+                                    return match.group(1)
+                    else:
+                        email_content = email_message.get_payload(decode=True).decode()
+                        match = re.search(rf"\b(https?://\S*{search_pattern}/\S*)\b", email_content)
+                        if match:
+                            return match.group(1)
+
         mail = imaplib.IMAP4_SSL('imap.gmail.com')
         mail.login(email_user, email_password)
-        mail.select("inbox")
 
-        resp, items = mail.search(None, f'SUBJECT "{specific_subject}"')
-        items = items[0].split()
+        number_of_seconds = 0
+        while number_of_seconds < wait_time:
+            found_email = search_for_hyperlink(mail, specific_subject, search_pattern)
+            print(found_email)
+            if found_email != last_email_value and found_email is not None:
+                mail.logout()
+                email_data[search_pattern] = found_email
+                with open("../JSON_files/emails.json", "w") as email_file:
+                    json.dump(email_data, email_file, indent=4)
+                return found_email
+            number_of_seconds += 1
+            time.sleep(1)
 
-        if items:
-            last_two_emails = items[-2:]
-            for email_id in last_two_emails:
-                resp, data = mail.fetch(email_id, "(BODY[TEXT])")
-                raw_email = data[0][1]
-                email_message = email.message_from_bytes(raw_email)
-                if email_message.is_multipart():
-                    for part in email_message.get_payload():
-                        if part.get_content_type() == "text/plain":
-                            body = part.get_payload(decode=True)
-                            email_content = body.decode()
-                            match = re.search(rf"\b(https?://\S*{search_pattern}/\S*)\b", email_content)
-                            if match:
-                                return match.group(1)
-                else:
-                    email_content = email_message.get_payload(decode=True).decode()
-                    match = re.search(rf"\b(https?://\S*{search_pattern}/\S*)\b", email_content)
-                    if match:
-                        return match.group(1)
-
-            raise ValueError("Link containing '/set-password/' not found in the last three emails.")
-
-        mail.logout()
+        raise TimeoutError(f"Email not received within {wait_time} seconds")
