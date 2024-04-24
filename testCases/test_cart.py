@@ -73,6 +73,6 @@ class TestCart(BaseClass):
         time.sleep(2)
         products_total = cart_page.get_list_of_product_attributes("price_total")
         order_total = cart_page.get_order_total()
-        assert products_total[0] == product_0_total + price_increase
+        assert products_total[0] == self.product_0_total + price_increase
         assert order_total == round(current_total + price_increase, 5)
 
