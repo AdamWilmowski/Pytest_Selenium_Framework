@@ -1,10 +1,10 @@
 class MariaDBSQLQueries:
     @staticmethod
     def basic_products_query():
-        return """
-        SELECT
+        return """SELECT
             sp.code,
             sp.moq,
+            sp.duty,
             sp.multiple,
             spv.weight,
             bt.qty,

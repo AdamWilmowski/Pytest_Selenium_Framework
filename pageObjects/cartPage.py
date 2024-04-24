@@ -13,8 +13,8 @@ class CartPage:
     items_weight = (By.CSS_SELECTOR, "span[data-update-field='weight']")
     items_unit_price = (By.CSS_SELECTOR, "span[data-update-field='unit-price']")
     items_price_total = (By.CSS_SELECTOR, "span[data-update-field='total']")
-    total_weight = (By.CSS_SELECTOR, "span[data-update-field='weightTotal']")
-    total = (By.CSS_SELECTOR, "span[data-update-field='orderTotal']")
+    total_weight = (By.CSS_SELECTOR, "div[data-update-field='weightTotal']")
+    total = (By.CSS_SELECTOR, 'span[class="text-size-big color-primary"]')
 
     def get_list_of_product_attributes(self, list_type):
         if list_type not in ["code", "weight", "unit_price", "price_total"]:
@@ -37,12 +37,16 @@ class CartPage:
         arrows = self.driver.find_elements(*CartPage.arrow_up)
         arrows[product].click()
 
+    def decrease_product_qty(self, product: int):
+        arrows = self.driver.find_elements(*CartPage.arrow_down)
+        arrows[product].click()
+
     def get_order_total(self):
-        total_object = self.driver.find_elements(*CartPage.total)
+        total_object = self.driver.find_element(*CartPage.total)
         total = total_object.text.split()[1]
-        return total
+        return float(total)
 
     def get_weight_total(self):
-        weight_object = self.driver.find_elements(*CartPage.total_weight)
+        weight_object = self.driver.find_element(*CartPage.total_weight)
         weight = weight_object.text.split()[0]
-        return weight
+        return float(weight)

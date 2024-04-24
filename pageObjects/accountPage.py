@@ -159,13 +159,13 @@ class AccountPage:
         self.driver.find_element(*AccountPage.company_user_email).send_keys(text)
 
     def input_customer_phone(self, text):
-        self.driver.find_element(*AccountPage.company_user_email).send_keys(text)
+        self.driver.find_element(*AccountPage.company_user_phone_number).send_keys(text)
 
     def clear_all_input_fields(self):
         self.driver.find_element(*AccountPage.company_user_name).clear()
         self.driver.find_element(*AccountPage.company_user_surname).clear()
         self.driver.find_element(*AccountPage.company_user_email).clear()
-        self.driver.find_element(*AccountPage.company_user_email).clear()
+        self.driver.find_element(*AccountPage.company_user_phone_number).clear()
 
     def get_list_of_company_user_validations(self):
         elements = self.driver.find_elements(*AccountPage.company_user_validation)

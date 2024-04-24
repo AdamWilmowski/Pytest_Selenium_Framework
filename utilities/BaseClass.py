@@ -110,7 +110,6 @@ class BaseClass:
         number_of_seconds = 0
         while number_of_seconds < wait_time:
             found_email = search_for_hyperlink(mail, specific_subject, search_pattern)
-            print(found_email)
             if found_email != last_email_value and found_email is not None:
                 mail.logout()
                 email_data[search_pattern] = found_email

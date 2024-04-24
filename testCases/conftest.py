@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
+from TestData.Secrets import Secrets
 
 driver = None
 
@@ -38,11 +39,11 @@ def setup(request):
         driver = webdriver.Edge(service=service)
         driver.implicitly_wait(wait_time)
     if request.config.getoption("environment") == "test":
-        link = "https://testcn-new.tme.hk"
+        link = f"https://{Secrets.webauth}@testcn-new.tme.hk"
     elif request.config.getoption("environment") == "prod":
         link = "https://tme.cn"
     else:
-        link = "https://betacn-new.tme.hk/"
+        link = f"https://{Secrets.webauth}@betacn-new.tme.hk/"
     driver.get(link)
     request.cls.driver = driver
     yield
