@@ -1,14 +1,17 @@
+import pytest
+import json
+
 import email
 import imaplib
 import inspect
 import logging
+
 import re
 import time
 
-import pytest
-import json
 from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
+
 from TestData.Secrets import Secrets
 
 
@@ -17,8 +20,8 @@ class BaseClass:
 
     @staticmethod
     def get_logger():
-        loggername = inspect.stack()[1][3]
-        logger = logging.getLogger(loggername)
+        logger_name = inspect.stack()[1][3]
+        logger = logging.getLogger(logger_name)
         filehandler = logging.FileHandler('logfile.log')
         formatter = logging.Formatter("%(asctime)s :%(levelname)s : %(name)s :%(message)s")
         filehandler.setFormatter(formatter)
@@ -39,6 +42,11 @@ class BaseClass:
         url_list = current_url.split("/")
         main_url = "https://" + url_list[2]
         self.get_to(main_url)
+
+    def get_to_admin(self):
+        current_url = self.get_current_url()
+        admin_url = current_url + "tme-office"
+        self.get_to(admin_url)
 
     def back(self):
         self.driver.back()
