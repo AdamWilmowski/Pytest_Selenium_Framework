@@ -43,7 +43,7 @@ def setup(request):
     elif request.config.getoption("environment") == "prod":
         link = "https://tme.cn"
     else:
-        link = f"https://{Secrets.webauth}@betacn-new.tme.hk/"
+        link = f"https://betacn-new.tme.hk/"
     driver.get(link)
     request.cls.driver = driver
     yield

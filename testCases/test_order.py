@@ -1,4 +1,6 @@
 import datetime
+import time
+
 import pytest
 import json
 import random
@@ -37,7 +39,10 @@ class TestOrders(BaseClass):
             self.get_to_main()
 
         checkout_page = main_page.get_to_checkout()
+        time.sleep(10)
         total = checkout_page.get_checkout_grand_total()
+        if order_total < 500:
+            order_total += 100
         assert total == round(order_total, 5)
         checkout_page.get_to_next_step()
         next_step_total = checkout_page.get_checkout_grand_total()

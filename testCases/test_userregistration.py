@@ -8,7 +8,6 @@ from TestData.SQLConnection import SQLFunctions
 from pageObjects.loginPage import LoginPage
 
 
-
 class TestUserRegistration(BaseClass):
 
     def test_register_user_manual_helper(self):
