@@ -1,3 +1,5 @@
+import time
+from selenium.common import NoSuchElementException, TimeoutException
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
@@ -21,7 +23,13 @@ class AdminPage:
     sku_input = (By.CSS_SELECTOR, "input[class='product-sku']")
     qty_input = (By.CSS_SELECTOR, "input[type='number']")
     cart_checkboxes = (By.CSS_SELECTOR, 'input[class="cart-item-checkbox"]')
-
+    form_order = (By.CSS_SELECTOR, 'form[class="ui loadable form"]')
+    grand_total = (By.XPATH, "//tr/td[8]")
+    submit_order = (By.ID, "create-button")
+    transport_cost_button = (By.ID, "js-split-transport-costs")
+    transport_cost_input = (By.ID, "split-transport-costs-total-value")
+    transport_cost_save_button = (By.XPATH, '//div[10]/div/div[3]/button')
+    order_label = (By.CSS_SELECTOR, "i[class='inbox icon']")
 
     def input_username(self, text):
         self.driver.find_element(*AdminPage.username).send_keys(text)
@@ -59,7 +67,29 @@ class AdminPage:
         checkboxes = self.driver.find_elements(*AdminPage.cart_checkboxes)
         return len(checkboxes)
 
+    def wait_for_form_to_reload(self, timeout=10):
+        WebDriverWait(self.driver, timeout).until(
+            EC.presence_of_element_located(AdminPage.form_order)
+        )
 
+    def get_grand_total(self):
+        elements = self.driver.find_elements(*AdminPage.grand_total)
+        grand_total_raw = elements[-1].text
+        grand_total = grand_total_raw.split()[1]
+        return float(grand_total)
 
+    def add_transport_costs(self, transport_costs):
+        self.driver.find_element(*AdminPage.transport_cost_button).click()
+        self.driver.find_element(*AdminPage.transport_cost_input).send_keys(transport_costs)
+        time.sleep(0.5)
+        self.driver.find_element(*AdminPage.transport_cost_save_button).click()
+        time.sleep(0.5)
+        self.wait_for_form_to_reload()
 
+    def get_to_submit_order(self):
+        self.driver.find_element(*AdminPage.submit_order).click()
 
+    def wait_for_text_in_order_label(self, text):
+        WebDriverWait(self.driver, 60*6).until(
+            EC.text_to_be_present_in_element(AdminPage.order_label, text)
+        )
