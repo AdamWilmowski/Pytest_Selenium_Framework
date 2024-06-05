@@ -15,7 +15,7 @@
         "multiple": 1,
         "weight": 0.958,
         "qty": 25,
-        "price": 241080
+        "price": 240960
     },
     {
         "code": "1.5KE6V8CA-ST",
@@ -24,7 +24,7 @@
         "multiple": 1,
         "weight": 0.958,
         "qty": 100,
-        "price": 213470
+        "price": 213420
     },
     {
         "code": "1.5KE6V8CA-ST",
@@ -33,7 +33,7 @@
         "multiple": 1,
         "weight": 0.958,
         "qty": 600,
-        "price": 192020
+        "price": 191970
     },
     {
         "code": "1.5KE6V8CA-ST",
@@ -42,7 +42,7 @@
         "multiple": 1,
         "weight": 0.958,
         "qty": 1800,
-        "price": 178740
+        "price": 178700
     },
     {
         "code": "LM2901MX/NOPB",
@@ -69,7 +69,7 @@
         "multiple": 1,
         "weight": 0.2,
         "qty": 25,
-        "price": 547000
+        "price": 546000
     },
     {
         "code": "LM2901MX/NOPB",
@@ -78,7 +78,7 @@
         "multiple": 1,
         "weight": 0.2,
         "qty": 100,
-        "price": 500000
+        "price": 499000
     },
     {
         "code": "LM2901MX/NOPB",
@@ -88,15 +88,6 @@
         "weight": 0.2,
         "qty": 500,
         "price": 462000
-    },
-    {
-        "code": "WEL.WT2010MSET",
-        "moq": 1,
-        "duty": 6.0,
-        "multiple": 1,
-        "weight": 5039.3,
-        "qty": 1,
-        "price": 514222642
     },
     {
         "code": "SMD1206-30K-1%",
@@ -114,7 +105,7 @@
         "multiple": 100,
         "weight": 0.025,
         "qty": 1000,
-        "price": 4815
+        "price": 4812
     },
     {
         "code": "SMD1206-30K-1%",
@@ -123,7 +114,7 @@
         "multiple": 100,
         "weight": 0.025,
         "qty": 5000,
-        "price": 2851
+        "price": 2850
     },
     {
         "code": "SMD1206-30K-1%",
@@ -132,7 +123,7 @@
         "multiple": 100,
         "weight": 0.025,
         "qty": 15000,
-        "price": 2479
+        "price": 2478
     },
     {
         "code": "SMD1206-30K-1%",
@@ -141,7 +132,7 @@
         "multiple": 100,
         "weight": 0.025,
         "qty": 50000,
-        "price": 2232
+        "price": 2230
     },
     {
         "code": "M20-80-IP54-R7035",
@@ -150,7 +141,7 @@
         "multiple": 1,
         "weight": 262.8,
         "qty": 1,
-        "price": 9900000
+        "price": 9897273
     },
     {
         "code": "M20-80-IP54-R7035",
@@ -159,7 +150,7 @@
         "multiple": 1,
         "weight": 262.8,
         "qty": 10,
-        "price": 9035455
+        "price": 9032727
     },
     {
         "code": "3RV1011-1DA15",
@@ -168,7 +159,7 @@
         "multiple": 1,
         "weight": 294.3,
         "qty": 1,
-        "price": 37854128
+        "price": 37624000
     },
     {
         "code": "3RV1011-1DA15",
@@ -177,7 +168,7 @@
         "multiple": 1,
         "weight": 294.3,
         "qty": 5,
-        "price": 37854128
+        "price": 37624000
     },
     {
         "code": "3RV1011-1DA15",
@@ -186,34 +177,7 @@
         "multiple": 1,
         "weight": 294.3,
         "qty": 10,
-        "price": 37854128
-    },
-    {
-        "code": "B2.5X10/BN19",
-        "moq": 100,
-        "duty": 8.0,
-        "multiple": 100,
-        "weight": 0.402,
-        "qty": 100,
-        "price": 97269
-    },
-    {
-        "code": "B2.5X10/BN19",
-        "moq": 100,
-        "duty": 8.0,
-        "multiple": 100,
-        "weight": 0.402,
-        "qty": 500,
-        "price": 78648
-    },
-    {
-        "code": "B2.5X10/BN19",
-        "moq": 100,
-        "duty": 8.0,
-        "multiple": 100,
-        "weight": 0.402,
-        "qty": 1000,
-        "price": 68352
+        "price": 37624000
     },
     {
         "code": "1KSMB47CA-LF",
@@ -240,7 +204,7 @@
         "multiple": 1,
         "weight": 0.06,
         "qty": 25,
-        "price": 307640
+        "price": 307600
     },
     {
         "code": "1KSMB47CA-LF",
@@ -249,7 +213,7 @@
         "multiple": 1,
         "weight": 0.06,
         "qty": 100,
-        "price": 275770
+        "price": 275700
     },
     {
         "code": "1KSMB47CA-LF",
@@ -258,7 +222,7 @@
         "multiple": 1,
         "weight": 0.06,
         "qty": 500,
-        "price": 257390
+        "price": 257328
     },
     {
         "code": "RAM-20.540/K",
@@ -267,7 +231,7 @@
         "multiple": 1,
         "weight": 182.1,
         "qty": 1,
-        "price": 6120000
+        "price": 6119091
     },
     {
         "code": "RAM-20.540/K",
@@ -276,7 +240,7 @@
         "multiple": 1,
         "weight": 182.1,
         "qty": 3,
-        "price": 5476364
+        "price": 5475455
     },
     {
         "code": "RAM-20.540/K",
@@ -285,7 +249,7 @@
         "multiple": 1,
         "weight": 182.1,
         "qty": 5,
-        "price": 4831818
+        "price": 4830909
     },
     {
         "code": "RAM-20.540/K",
@@ -294,7 +258,7 @@
         "multiple": 1,
         "weight": 182.1,
         "qty": 10,
-        "price": 4510000
+        "price": 4509091
     },
     {
         "code": "PCV-7X0.5/BK-125C",
@@ -303,7 +267,7 @@
         "multiple": 1,
         "weight": 870.1,
         "qty": 1,
-        "price": 8473832
+        "price": 8405607
     },
     {
         "code": "PCV-7X0.5/BK-125C",
@@ -312,7 +276,7 @@
         "multiple": 1,
         "weight": 870.1,
         "qty": 5,
-        "price": 7203738
+        "price": 7145794
     },
     {
         "code": "PCV-7X0.5/BK-125C",
@@ -321,7 +285,7 @@
         "multiple": 1,
         "weight": 870.1,
         "qty": 20,
-        "price": 6697196
+        "price": 6643925
     },
     {
         "code": "IDLV-65-24",
@@ -330,7 +294,7 @@
         "multiple": 1,
         "weight": 224.1,
         "qty": 1,
-        "price": 15297000
+        "price": 15290000
     },
     {
         "code": "IDLV-65-24",
@@ -339,7 +303,7 @@
         "multiple": 1,
         "weight": 224.1,
         "qty": 5,
-        "price": 14572000
+        "price": 14566000
     },
     {
         "code": "IDLV-65-24",
@@ -348,7 +312,7 @@
         "multiple": 1,
         "weight": 224.1,
         "qty": 10,
-        "price": 13920000
+        "price": 13913000
     },
     {
         "code": "IDLV-65-24",
@@ -357,7 +321,7 @@
         "multiple": 1,
         "weight": 224.1,
         "qty": 20,
-        "price": 13485000
+        "price": 13479000
     },
     {
         "code": "DEP128064S-Y",
@@ -366,7 +330,7 @@
         "multiple": 1,
         "weight": 10.63,
         "qty": 1,
-        "price": 16747000
+        "price": 16740000
     },
     {
         "code": "DEP128064S-Y",
@@ -375,7 +339,7 @@
         "multiple": 1,
         "weight": 10.63,
         "qty": 3,
-        "price": 14717000
+        "price": 14711000
     },
     {
         "code": "DEP128064S-Y",
@@ -384,7 +348,7 @@
         "multiple": 1,
         "weight": 10.63,
         "qty": 10,
-        "price": 13702000
+        "price": 13696000
     },
     {
         "code": "HG16-S-M20-PA66-BK",
@@ -420,7 +384,7 @@
         "multiple": 1,
         "weight": 16.56,
         "qty": 1,
-        "price": 4633301
+        "price": 4612583
     },
     {
         "code": "CP30220MB",
@@ -429,7 +393,7 @@
         "multiple": 1,
         "weight": 16.56,
         "qty": 10,
-        "price": 4212092
+        "price": 4193257
     },
     {
         "code": "CP30220MB",
@@ -438,7 +402,7 @@
         "multiple": 1,
         "weight": 16.56,
         "qty": 50,
-        "price": 3790883
+        "price": 3773932
     },
     {
         "code": "CP30220MB",
@@ -447,6 +411,42 @@
         "multiple": 1,
         "weight": 16.56,
         "qty": 100,
-        "price": 2948464
+        "price": 2935280
+    },
+    {
+        "code": "I15KV616K-B",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 88.07,
+        "qty": 1,
+        "price": 2733000
+    },
+    {
+        "code": "I15KV616K-B",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 88.07,
+        "qty": 5,
+        "price": 2183000
+    },
+    {
+        "code": "I15KV616K-B",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 88.07,
+        "qty": 25,
+        "price": 1741000
+    },
+    {
+        "code": "I15KV616K-B",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 88.07,
+        "qty": 100,
+        "price": 1488000
     }
 ]

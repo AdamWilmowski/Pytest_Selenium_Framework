@@ -12,6 +12,7 @@ from TestData.Secrets import Secrets
 class TestCompanyUser(BaseClass):
     @pytest.mark.parametrize("role", ["admin", "user"])
     def test_add_company_user_admin(self, role):
+        self.get_to_main()
         main_page = MainPage(self.driver)
         main_page.close_cookies()
         db_version = main_page.get_db_version()
@@ -38,16 +39,16 @@ class TestCompanyUser(BaseClass):
         account_page.input_customer_phone(customer_data['phone_number'])
         account_page.add_company_user()
         company_user_email_list = account_page.get_company_users_data_list("emails")
-        assert company_user_email_list[0] == email
+        assert company_user_email_list[-1] == email
         company_user_roles = account_page.get_company_users_data_list("roles")
         if role == "admin":
-            assert company_user_roles[0] == "公司管理员"
+            assert company_user_roles[-1] == "公司管理员"
             is_admin = 1
         else:
-            assert company_user_roles[0] == "默认用户"
+            assert company_user_roles[-1] == "默认用户"
             is_admin = 0
         company_user_statuses_list = account_page.get_company_users_data_list("statuses")
-        assert company_user_statuses_list[0] == "未验证电子邮件"
+        assert company_user_statuses_list[-1] == "未验证电子邮件"
         sql_function.add_company_user_to_database(is_admin, customer_data['name'], customer_data['surname'],
                                                   customer_data['phone_number'], int(email_value), email,
                                                   int(parent_email_id), db_version)
@@ -91,6 +92,9 @@ class TestCompanyUser(BaseClass):
                 raise "Default company user can register new account"
             except NoSuchElementException:
                 pass
+        self.get_to_main()
+        main_page.logout_customer()
+
 
     def test_company_user_validations(self):
         main_page = MainPage(self.driver)

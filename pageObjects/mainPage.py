@@ -27,7 +27,7 @@ class MainPage:
     def close_cookies(self):
         try:
             self.driver.find_element(*MainPage.close_cookies_icon).click()
-        except NoSuchElementException or ElementNotInteractableException:
+        except (NoSuchElementException, ElementNotInteractableException):
             pass
 
     def get_db_version(self):

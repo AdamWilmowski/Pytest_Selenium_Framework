@@ -53,7 +53,8 @@ class CheckoutPage:
         )
 
     def get_payment_gate_amount(self):
-        return float(self.driver.find_element(*CheckoutPage.payment_gate_amount).text.split()[1])
+        amount = self.driver.find_element(CheckoutPage.payment_gate_amount).text
+        return float(amount.split()[1])
 
     def accept_payment(self):
         self.driver.find_element(*CheckoutPage.payment_gate_yes_button).click()
