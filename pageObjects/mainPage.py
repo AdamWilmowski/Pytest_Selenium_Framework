@@ -1,4 +1,4 @@
-from selenium.common import NoSuchElementException, TimeoutException
+from selenium.common import NoSuchElementException, TimeoutException, ElementNotInteractableException
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -27,7 +27,7 @@ class MainPage:
     def close_cookies(self):
         try:
             self.driver.find_element(*MainPage.close_cookies_icon).click()
-        except NoSuchElementException:
+        except NoSuchElementException or ElementNotInteractableException:
             pass
 
     def get_db_version(self):

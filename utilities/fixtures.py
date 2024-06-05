@@ -19,7 +19,7 @@ def get_product_data(request):
             return round(value_with_vat_rate, 5)
 
     query_type = request.param
-    maria_db = MariaDBConnector("betacn32")
+    maria_db = MariaDBConnector("betacn33")
     if query_type == "basic_products":
         maria_db.get_basic_products()
     elif query_type == "heavy_products":
