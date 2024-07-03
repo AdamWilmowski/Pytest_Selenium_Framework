@@ -37,8 +37,7 @@ class TestUserRegistration(BaseClass):
         registration_page.same_fapiao_email_switch()
         registration_page.select_all_agreements()
 
-
-        time.sleep(20)
+        time.sleep(30)
 
     @pytest.mark.registration
     def test_register_user_basic(self):

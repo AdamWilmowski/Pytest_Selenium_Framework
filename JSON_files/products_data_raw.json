@@ -1,452 +1,218 @@
 [
     {
-        "code": "1.5KE6V8CA-ST",
-        "moq": 3,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.958,
-        "qty": 3,
-        "price": 279000
-    },
-    {
-        "code": "1.5KE6V8CA-ST",
-        "moq": 3,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.958,
-        "qty": 25,
-        "price": 240960
-    },
-    {
-        "code": "1.5KE6V8CA-ST",
-        "moq": 3,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.958,
-        "qty": 100,
-        "price": 213420
-    },
-    {
-        "code": "1.5KE6V8CA-ST",
-        "moq": 3,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.958,
-        "qty": 600,
-        "price": 191970
-    },
-    {
-        "code": "1.5KE6V8CA-ST",
-        "moq": 3,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.958,
-        "qty": 1800,
-        "price": 178700
-    },
-    {
-        "code": "LM2901MX/NOPB",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.2,
-        "qty": 1,
-        "price": 754000
-    },
-    {
-        "code": "LM2901MX/NOPB",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.2,
-        "qty": 5,
-        "price": 622000
-    },
-    {
-        "code": "LM2901MX/NOPB",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.2,
-        "qty": 25,
-        "price": 546000
-    },
-    {
-        "code": "LM2901MX/NOPB",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.2,
-        "qty": 100,
-        "price": 499000
-    },
-    {
-        "code": "LM2901MX/NOPB",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.2,
-        "qty": 500,
-        "price": 462000
-    },
-    {
-        "code": "SMD1206-30K-1%",
-        "moq": 100,
-        "duty": 0.0,
-        "multiple": 100,
-        "weight": 0.025,
-        "qty": 100,
-        "price": 13910
-    },
-    {
-        "code": "SMD1206-30K-1%",
-        "moq": 100,
-        "duty": 0.0,
-        "multiple": 100,
-        "weight": 0.025,
-        "qty": 1000,
-        "price": 4812
-    },
-    {
-        "code": "SMD1206-30K-1%",
-        "moq": 100,
-        "duty": 0.0,
-        "multiple": 100,
-        "weight": 0.025,
-        "qty": 5000,
-        "price": 2850
-    },
-    {
-        "code": "SMD1206-30K-1%",
-        "moq": 100,
-        "duty": 0.0,
-        "multiple": 100,
-        "weight": 0.025,
-        "qty": 15000,
-        "price": 2478
-    },
-    {
-        "code": "SMD1206-30K-1%",
-        "moq": 100,
-        "duty": 0.0,
-        "multiple": 100,
-        "weight": 0.025,
-        "qty": 50000,
-        "price": 2230
-    },
-    {
-        "code": "M20-80-IP54-R7035",
-        "moq": 1,
-        "duty": 10.0,
-        "multiple": 1,
-        "weight": 262.8,
-        "qty": 1,
-        "price": 9897273
-    },
-    {
-        "code": "M20-80-IP54-R7035",
-        "moq": 1,
-        "duty": 10.0,
-        "multiple": 1,
-        "weight": 262.8,
-        "qty": 10,
-        "price": 9032727
-    },
-    {
-        "code": "3RV1011-1DA15",
-        "moq": 1,
-        "duty": 9.0,
-        "multiple": 1,
-        "weight": 294.3,
-        "qty": 1,
-        "price": 37624000
-    },
-    {
-        "code": "3RV1011-1DA15",
-        "moq": 1,
-        "duty": 9.0,
-        "multiple": 1,
-        "weight": 294.3,
-        "qty": 5,
-        "price": 37624000
-    },
-    {
-        "code": "3RV1011-1DA15",
-        "moq": 1,
-        "duty": 9.0,
-        "multiple": 1,
-        "weight": 294.3,
-        "qty": 10,
-        "price": 37624000
-    },
-    {
-        "code": "1KSMB47CA-LF",
-        "moq": 2,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.06,
-        "qty": 2,
-        "price": 388000
-    },
-    {
-        "code": "1KSMB47CA-LF",
-        "moq": 2,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.06,
-        "qty": 10,
-        "price": 347200
-    },
-    {
-        "code": "1KSMB47CA-LF",
-        "moq": 2,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.06,
-        "qty": 25,
-        "price": 307600
-    },
-    {
-        "code": "1KSMB47CA-LF",
-        "moq": 2,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.06,
-        "qty": 100,
-        "price": 275700
-    },
-    {
-        "code": "1KSMB47CA-LF",
-        "moq": 2,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 0.06,
-        "qty": 500,
-        "price": 257328
-    },
-    {
-        "code": "RAM-20.540/K",
-        "moq": 1,
-        "duty": 10.0,
-        "multiple": 1,
-        "weight": 182.1,
-        "qty": 1,
-        "price": 6119091
-    },
-    {
-        "code": "RAM-20.540/K",
-        "moq": 1,
-        "duty": 10.0,
-        "multiple": 1,
-        "weight": 182.1,
-        "qty": 3,
-        "price": 5475455
-    },
-    {
-        "code": "RAM-20.540/K",
-        "moq": 1,
-        "duty": 10.0,
-        "multiple": 1,
-        "weight": 182.1,
-        "qty": 5,
-        "price": 4830909
-    },
-    {
-        "code": "RAM-20.540/K",
-        "moq": 1,
-        "duty": 10.0,
-        "multiple": 1,
-        "weight": 182.1,
-        "qty": 10,
-        "price": 4509091
-    },
-    {
-        "code": "PCV-7X0.5/BK-125C",
+        "code": "FG-25-BK",
         "moq": 1,
         "duty": 7.0,
         "multiple": 1,
-        "weight": 870.1,
+        "weight": 21000.0,
         "qty": 1,
-        "price": 8405607
+        "price": 1866355
     },
     {
-        "code": "PCV-7X0.5/BK-125C",
+        "code": "FG-25-BK",
         "moq": 1,
         "duty": 7.0,
         "multiple": 1,
-        "weight": 870.1,
-        "qty": 5,
-        "price": 7145794
+        "weight": 21000.0,
+        "qty": 10,
+        "price": 1446168
     },
     {
-        "code": "PCV-7X0.5/BK-125C",
+        "code": "FG-25-BK",
         "moq": 1,
         "duty": 7.0,
         "multiple": 1,
-        "weight": 870.1,
-        "qty": 20,
-        "price": 6643925
-    },
-    {
-        "code": "IDLV-65-24",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 224.1,
-        "qty": 1,
-        "price": 15290000
-    },
-    {
-        "code": "IDLV-65-24",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 224.1,
-        "qty": 5,
-        "price": 14566000
-    },
-    {
-        "code": "IDLV-65-24",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 224.1,
-        "qty": 10,
-        "price": 13913000
-    },
-    {
-        "code": "IDLV-65-24",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 224.1,
-        "qty": 20,
-        "price": 13479000
-    },
-    {
-        "code": "DEP128064S-Y",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 10.63,
-        "qty": 1,
-        "price": 16740000
-    },
-    {
-        "code": "DEP128064S-Y",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 10.63,
-        "qty": 3,
-        "price": 14711000
-    },
-    {
-        "code": "DEP128064S-Y",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 10.63,
-        "qty": 10,
-        "price": 13696000
-    },
-    {
-        "code": "HG16-S-M20-PA66-BK",
-        "moq": 1,
-        "duty": 10.0,
-        "multiple": 1,
-        "weight": 10.0,
-        "qty": 1,
-        "price": 1807273
-    },
-    {
-        "code": "HG16-S-M20-PA66-BK",
-        "moq": 1,
-        "duty": 10.0,
-        "multiple": 1,
-        "weight": 10.0,
-        "qty": 5,
-        "price": 1406364
-    },
-    {
-        "code": "HG16-S-M20-PA66-BK",
-        "moq": 1,
-        "duty": 10.0,
-        "multiple": 1,
-        "weight": 10.0,
-        "qty": 10,
-        "price": 1249091
-    },
-    {
-        "code": "CP30220MB",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 16.56,
-        "qty": 1,
-        "price": 4612583
-    },
-    {
-        "code": "CP30220MB",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 16.56,
-        "qty": 10,
-        "price": 4193257
-    },
-    {
-        "code": "CP30220MB",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 16.56,
+        "weight": 21000.0,
         "qty": 50,
-        "price": 3773932
+        "price": 1276112
     },
     {
-        "code": "CP30220MB",
+        "code": "NB-TROL02",
         "moq": 1,
-        "duty": 0.0,
+        "duty": 10.0,
         "multiple": 1,
-        "weight": 16.56,
-        "qty": 100,
-        "price": 2935280
-    },
-    {
-        "code": "I15KV616K-B",
-        "moq": 1,
-        "duty": 0.0,
-        "multiple": 1,
-        "weight": 88.07,
+        "weight": 12550.0,
         "qty": 1,
-        "price": 2733000
+        "price": 53428182
     },
     {
-        "code": "I15KV616K-B",
+        "code": "NB-TROL02",
         "moq": 1,
-        "duty": 0.0,
+        "duty": 10.0,
         "multiple": 1,
-        "weight": 88.07,
+        "weight": 12550.0,
+        "qty": 4,
+        "price": 49067273
+    },
+    {
+        "code": "NB-TROL02",
+        "moq": 1,
+        "duty": 10.0,
+        "multiple": 1,
+        "weight": 12550.0,
+        "qty": 12,
+        "price": 45432727
+    },
+    {
+        "code": "PP43NNRAZ",
+        "moq": 1,
+        "duty": 10.0,
+        "multiple": 1,
+        "weight": 21000.0,
+        "qty": 1,
+        "price": 1339091
+    },
+    {
+        "code": "PP43NNRAZ",
+        "moq": 1,
+        "duty": 10.0,
+        "multiple": 1,
+        "weight": 21000.0,
         "qty": 5,
-        "price": 2183000
+        "price": 1229091
     },
     {
-        "code": "I15KV616K-B",
+        "code": "PP43NNRAZ",
         "moq": 1,
-        "duty": 0.0,
+        "duty": 10.0,
         "multiple": 1,
-        "weight": 88.07,
+        "weight": 21000.0,
         "qty": 25,
-        "price": 1741000
+        "price": 1150909
     },
     {
-        "code": "I15KV616K-B",
+        "code": "PP43NNRAZ",
+        "moq": 1,
+        "duty": 10.0,
+        "multiple": 1,
+        "weight": 21000.0,
+        "qty": 100,
+        "price": 1040909
+    },
+    {
+        "code": "SRP-01",
         "moq": 1,
         "duty": 0.0,
         "multiple": 1,
-        "weight": 88.07,
+        "weight": 20000.0,
+        "qty": 1,
+        "price": 21282000
+    },
+    {
+        "code": "SRP-01",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 20000.0,
+        "qty": 5,
+        "price": 20286000
+    },
+    {
+        "code": "SRP-01",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 20000.0,
+        "qty": 10,
+        "price": 18918000
+    },
+    {
+        "code": "FR-693",
+        "moq": 1,
+        "duty": 9.0,
+        "multiple": 1,
+        "weight": 22000.0,
+        "qty": 1,
+        "price": 12445872
+    },
+    {
+        "code": "FR-693",
+        "moq": 1,
+        "duty": 9.0,
+        "multiple": 1,
+        "weight": 22000.0,
+        "qty": 3,
+        "price": 11615596
+    },
+    {
+        "code": "FR-693",
+        "moq": 1,
+        "duty": 9.0,
+        "multiple": 1,
+        "weight": 22000.0,
+        "qty": 10,
+        "price": 10786239
+    },
+    {
+        "code": "MX-67643-0910",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 17500.0,
+        "qty": 1,
+        "price": 783000
+    },
+    {
+        "code": "MX-67643-0910",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 17500.0,
+        "qty": 50,
+        "price": 642000
+    },
+    {
+        "code": "MX-67643-0910",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 17500.0,
         "qty": 100,
-        "price": 1488000
+        "price": 470000
+    },
+    {
+        "code": "MX-67643-0910",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 17500.0,
+        "qty": 300,
+        "price": 376000
+    },
+    {
+        "code": "HSCDRRN001ND2A3",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 30000.0,
+        "qty": 1,
+        "price": 51114000
+    },
+    {
+        "code": "HSCDRRN001ND2A3",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 30000.0,
+        "qty": 3,
+        "price": 47983000
+    },
+    {
+        "code": "HSCDRRN001ND2A3",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 30000.0,
+        "qty": 10,
+        "price": 44774000
+    },
+    {
+        "code": "HSCDRRN001ND2A3",
+        "moq": 1,
+        "duty": 0.0,
+        "multiple": 1,
+        "weight": 30000.0,
+        "qty": 25,
+        "price": 42190000
     }
 ]

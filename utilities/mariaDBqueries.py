@@ -31,6 +31,7 @@ class MariaDBSQLQueries:
         SELECT
             sp.code,
             sp.moq,
+            sp.duty,
             sp.multiple,
             spv.weight,
             bt.qty,

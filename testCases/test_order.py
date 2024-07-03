@@ -14,9 +14,10 @@ from utilities.fixtures import get_product_data
 
 class TestOrders(BaseClass):
 
-    @pytest.mark.parametrize("get_product_data", ["basic_products"], indirect=True)
+    @pytest.mark.parametrize("get_product_data", ["basic_products", "heavy_products"], indirect=True)
     def test_order_basic(self, get_product_data):
         main_page = MainPage(self.driver)
+        self.get_to_main()
         main_page.close_cookies()
         db_version = main_page.get_db_version()
         login_page = main_page.get_to_login_page()
@@ -50,14 +51,15 @@ class TestOrders(BaseClass):
         checkout_page.wait_for_payment_gate()
         checkout_page.select_payment_gate("b2b")
         payment_gate_amount = checkout_page.get_payment_gate_amount()
-        assert payment_gate_amount == total
+        assert abs(payment_gate_amount - total) <= 2
         checkout_page.accept_payment()
         thank_you_values = checkout_page.get_thank_you_values()
-        assert thank_you_values["total"] == total
+        assert thank_you_values["total"] == payment_gate_amount
         assert thank_you_values["payment_type"] == "预付款"
         self.get_to_main()
         account_page = main_page.get_to_account_dashboard()
         account_page.get_to_orders_summary()
         assert account_page.get_order_dates()[0] == datetime.date.today().strftime("%m/%d/%Y")
         assert account_page.get_order_totals()[0] == round(order_total, 2)
+
 

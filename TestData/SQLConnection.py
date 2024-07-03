@@ -1,6 +1,5 @@
 import sqlite3
 
-from sqlalchemy.exc import OperationalError
 
 
 class SQLFunctions:
@@ -62,7 +61,7 @@ class SQLFunctions:
                                 (is_admin, contact_person_name, contact_person_surname, contact_person_phone, email_id,
                                  email, parent_email_id, 0, db_version))
             self.sql.commit()
-        except OperationalError as e:
+        except sqlite3.OperationalError as e:
             print(f"OperationalError: {e}")
 
     def confirm_company_user(self, email_value):
