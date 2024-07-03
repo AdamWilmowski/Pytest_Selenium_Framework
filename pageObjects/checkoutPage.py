@@ -13,6 +13,7 @@ class CheckoutPage:
     place_order = (By.ID, "place-order")
     payment_gate_amount = (By.TAG_NAME, 'h3')
     payment_gate_yes_button = (By.CSS_SELECTOR, 'input[class="ui button green"]')
+    thank_you_value_total = (By.CSS_SELECTOR, 'span[class="font-weight-light underline"]')
     thank_you_values = (By.CSS_SELECTOR, 'span[class="font-weight-light"]')
     payment_gate_select_button = (By.XPATH, '//a[@class="ui button blue"]')
 
@@ -53,17 +54,19 @@ class CheckoutPage:
         )
 
     def get_payment_gate_amount(self):
-        return float(self.driver.find_element(*CheckoutPage.payment_gate_amount).text.split()[1])
+        h3_tag_list = self.driver.find_elements(*CheckoutPage.payment_gate_amount)
+        return float(h3_tag_list[1].text.split()[1])
 
     def accept_payment(self):
         self.driver.find_element(*CheckoutPage.payment_gate_yes_button).click()
 
     def get_thank_you_values(self):
+        order_number = self.driver.find_element(*CheckoutPage.thank_you_value_total).text
         elements_list_raw = self.driver.find_elements(*CheckoutPage.thank_you_values)
         elements_dict = {
-            "order_number": elements_list_raw[0].text,
-            "total": elements_list_raw[1].text.split()[1],
-            "payment_type": elements_list_raw[4].text
+            "order_number": order_number,
+            "total": elements_list_raw[0].text.split()[1],
+            "payment_type": elements_list_raw[2].text
         }
         return elements_dict
 

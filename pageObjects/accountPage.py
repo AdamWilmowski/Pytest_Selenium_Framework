@@ -22,7 +22,8 @@ class AccountPage:
 
     company_user_section = (By.LINK_TEXT, "用户")
     add_company_user_button = (By.CSS_SELECTOR, 'a[class="button -primary d-inline-block m-t-20"]')
-    select_role = (By.ID, "app_new_company_user_customer_user_companyRole")
+    select_role = (By.CSS_SELECTOR, 'div[class="ui dropdown selection"]')
+    default_user_role = (By.CSS_SELECTOR, 'div[class="item"]')
     company_user_name = (By.ID, "app_new_company_user_customer_firstName")
     company_user_surname = (By.ID, "app_new_company_user_customer_lastName")
     company_user_email = (By.ID, "app_new_company_user_customer_email")
@@ -145,9 +146,8 @@ class AccountPage:
         self.driver.find_element(*AccountPage.add_company_user_button).click()
 
     def change_from_admin_to_default_user(self):
-        select_element = self.driver.find_element(*AccountPage.select_role)
-        select = Select(select_element)
-        select.select_by_value("ROLE_COMPANY_DEFAULT_USER")
+        self.driver.find_element(*AccountPage.select_role).click()
+        self.driver.find_element(*AccountPage.default_user_role).click()
 
     def input_customer_name(self, text):
         self.driver.find_element(*AccountPage.company_user_name).send_keys(text)

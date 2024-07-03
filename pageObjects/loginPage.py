@@ -12,7 +12,7 @@ class LoginPage:
     login_button = (By.CSS_SELECTOR, "button[class='button -primary -login m-t-30 m-b-45']")
     agreement_button = (By.CSS_SELECTOR, 'div[class="ui radio checkbox"]')
     agreements_agree_button = (By.CSS_SELECTOR, 'button[class="button -primary -medium -fullWidth"]')
-    reset_password_button = (By.CSS_SELECTOR, "link -grey text-align-right")
+    reset_password_button = (By.LINK_TEXT, "忘记密码")
     reset_password_email = (By.ID, "sylius_user_request_password_reset_email")
     send_reset_email_button = (By.ID, "button -primary -login m-t-30 m-b-10")
     reset_password_first_password = (By.ID, "sylius_user_reset_password_password_first")
