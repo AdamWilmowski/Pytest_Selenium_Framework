@@ -39,9 +39,10 @@ class BaseClass:
 
     def get_to_main(self):
         current_url = self.get_current_url()
-        url_list = current_url.split("/")
-        main_url = "https://" + url_list[2]
-        self.get_to(main_url)
+        if current_url not in ["https://betacn-new.tme.hk/", "https://testcn-new.tme.hk/", "https://www.tme.cn/"]:
+            url_list = current_url.split("/")
+            main_url = "https://" + url_list[2]
+            self.get_to(main_url)
 
     def get_to_admin(self):
         current_url = self.get_current_url()

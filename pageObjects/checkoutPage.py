@@ -16,6 +16,7 @@ class CheckoutPage:
     thank_you_value_total = (By.CSS_SELECTOR, 'span[class="font-weight-light underline"]')
     thank_you_values = (By.CSS_SELECTOR, 'span[class="font-weight-light"]')
     payment_gate_select_button = (By.XPATH, '//a[@class="ui button blue"]')
+    payment_gate_headers = (By.CSS_SELECTOR, 'h2[class="h2 font-weight-bold p-b-20"]')
 
     # Unregistered checkout
 
@@ -76,6 +77,10 @@ class CheckoutPage:
         else:
             selector = 0
         self.driver.find_elements(*CheckoutPage.payment_gate_select_button)[selector].click()
+
+    def get_payment_gate_headers(self):
+        headers = [header.text for header in self.driver.find_elements(*CheckoutPage.payment_gate_headers)]
+        return headers
 
     # UNREGISTERED CHECKOUT
 
