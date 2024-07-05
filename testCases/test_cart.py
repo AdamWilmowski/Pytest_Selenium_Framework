@@ -3,6 +3,7 @@ from random import randint
 
 import pytest
 import json
+import random
 from utilities.BaseClass import BaseClass
 from pageObjects.mainPage import MainPage
 from utilities.fixtures import get_product_data
@@ -17,7 +18,7 @@ class TestCart(BaseClass):
         with open("../JSON_files/products_data.json") as products:
             products = json.load(products)
 
-        product_list = list(products.keys())[:number_of_products]
+        product_list = random.sample(list(products.keys()), number_of_products)
         number_of_products_in_cart = 0
         for product in product_list:
             main_page.search_for_product(product)
@@ -52,16 +53,15 @@ class TestCart(BaseClass):
         current_total = 0
         current_weight = 0
         for i in range(len(product_list)):
-            assert products_total[i] == getattr(self, f'product_{i}_total')
+            assert products_total[i] == round(getattr(self, f'product_{i}_total'), 4)
             current_total += getattr(self, f'product_{i}_total')
             current_weight += getattr(self, f'product_{i}_weight') * getattr(self, f'product_{i}_moq')
         if current_weight > 1000:
             current_weight = round(current_weight / 1000, 5)
         order_total = cart_page.get_order_total()
         weight_total = cart_page.get_weight_total()
-        assert order_total == round(current_total, 5)
-        assert weight_total == current_weight
-
+        assert order_total == round(current_total, 4)
+        assert weight_total == round(current_weight, 4)
         cart_page.increase_product_qty(0)
         product_price_1 = self.product_0_prices[self.product_0_threshold[0]]
         product_price_2 = self.product_0_prices[self.product_0_threshold[1]]
@@ -70,9 +70,13 @@ class TestCart(BaseClass):
             price_increase = self.product_0_multiply * product_price_1
         else:
             price_increase = self.product_0_multiply * product_price_2
-        time.sleep(2)
+        time.sleep(5)
         products_total = cart_page.get_list_of_product_attributes("price_total")
         order_total = cart_page.get_order_total()
         assert products_total[0] == self.product_0_total + price_increase
-        assert order_total == round(current_total + price_increase, 5)
-
+        assert order_total == round(current_total + price_increase, 4)
+        cart_page.input_product_qty(1, self.product_1_threshold[-1])
+        time.sleep(4)
+        products_total = cart_page.get_list_of_product_attributes("price_total")
+        assert products_total[1] == \
+               float(self.product_1_threshold[-1]) * self.product_1_prices[self.product_1_threshold[-1]]

@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class CartPage:
@@ -31,6 +32,7 @@ class CartPage:
 
     def input_product_qty(self, product: int, qty):
         qty_inputs = self.driver.find_elements(*CartPage.item_qty_input)
+        qty_inputs[product].clear()
         qty_inputs[product].send_keys(qty)
 
     def increase_product_qty(self, product: int):
@@ -45,6 +47,9 @@ class CartPage:
         total_object = self.driver.find_element(*CartPage.total)
         total = total_object.text.split()[1]
         return float(total)
+
+    def wait_till_total_different_from_base(self, base_text):
+        WebDriverWait(self.driver, 10).until(lambda d: d.find_element(*CartPage.total).text != base_text)
 
     def get_weight_total(self):
         weight_object = self.driver.find_element(*CartPage.total_weight)
